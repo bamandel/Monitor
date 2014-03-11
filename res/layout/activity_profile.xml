@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100"
+    tools:context=".ProfileActivity" >
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:baselineAligned="false"
+       android:orientation="horizontal" >
+
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="50"
+	        android:orientation="horizontal">
+	        <ImageView
+	            android:id="@+id/ivProPic"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:src="@drawable/profile_pic"
+	            android:contentDescription="@string/profile_pic"/>
+	    </LinearLayout>
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="50"
+	        android:layout_gravity="center"
+	        android:orientation="vertical">
+	        <TextView
+		        android:id="@+id/tvName"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Personal Data"
+		        android:ems="10"/>
+	    </LinearLayout>
+   </LinearLayout>
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_gravity="center"
+	    android:orientation="vertical" >
+
+		<TextView
+		    android:id="@+id/editText2"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Bottom Text"
+		    android:layout_gravity="center"
+		    android:ems="10" />
+		<TextView
+		    android:id="@+id/editText3"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:text="More Bottom Text"
+		    android:ems="10" />
+	</LinearLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Monitor</string>
+    <string name="action_settings">Settings</string>
+    <string name="profile_pic">Profile Picture</string>
+    <string name="hello_world">Implement Activity</string>
+    <string name="login_user">Unknown</string>
+    <string name="login_password_user">Unknown</string>
+    <string name="name_user">Unknown</string>
+    <string name="age_user">Unknown</string>
+    <string name="address_user">Unknown</string>
+    <string name="current_dr_user">Unknown</string>
+    <string name="logo_text_string">LOGO</string>
+    <string name="health_button_string">Health</string>
+    <string name="profile_button_string">Profile</string>
+    <string name="options_button_string">Options</string>
+    <string name="emergency_button_string">EMERGENCY</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_health">HealthActivity</string>
+    <string name="title_activity_options">OptionsActivity</string>
+    <string name="title_activity_splash">Splash</string>
+
+</resources>
