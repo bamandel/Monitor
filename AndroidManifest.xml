@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="12"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <uses-permission
@@ -19,11 +19,15 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.JNJABA.monitor.MainMenuActivity"
-            android:label="@string/app_name" >
+            android:name="com.JNJABA.monitor.MainMenuActivity" >
+        </activity>
+        <activity
+            android:name="com.JNJABA.monitor.ProfileActivity" >
+        </activity>
+        <activity
+            android:name="com.JNJABA.monitor.LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,24 +35,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.JNJABA.monitor.ProfileActivity"
-            android:label="@string/title_activity_profile" >
+            android:name="com.JNJABA.monitor.HealthActivity" >
         </activity>
         <activity
-            android:name="com.JNJABA.monitor.LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:name="com.JNJABA.monitor.OptionsActivity" >
         </activity>
         <activity
-            android:name="com.JNJABA.monitor.HealthActivity"
-            android:label="@string/title_activity_health" >
+            android:name="com.JNJABA.monitor.EmergencyActivity">
         </activity>
         <activity
-            android:name="com.JNJABA.monitor.OptionsActivity"
-            android:label="@string/title_activity_options" >
-        </activity>
-        <activity
-            android:name="com.JNJABA.monitor.Splash"
-            android:label="@string/title_activity_splash" >
+            android:name="com.JNJABA.monitor.Splash" >
         </activity>
         <service android:name="com.JNJABA.monitor.MainMenuIntentService" />
     </application>

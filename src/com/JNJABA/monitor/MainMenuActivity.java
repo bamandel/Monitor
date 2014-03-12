@@ -10,15 +10,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainMenuActivity extends Activity {
-	//private static final String TAG = "Monitor-Main";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 		
-		Intent serviceIntent = new Intent(this, MainMenuIntentService.class);
-		startService(serviceIntent);
+		//Intent serviceIntent = new Intent(this, MainMenuIntentService.class);
+		//startService(serviceIntent);
 		
 		Button mHealthButton = (Button) findViewById(R.id.health_button);
 		mHealthButton.setOnClickListener(new OnClickListener() {
