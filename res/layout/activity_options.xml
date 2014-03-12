@@ -2,181 +2,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="top"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".activity_options" >
+    tools:context=".OptionsActivity" >
 
-    <EditText
-        android:id="@+id/editText5"
+    <TextView
+        android:id="@+id/tvNotification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_below="@+id/textView5"
-        android:ems="10"
-        android:hint="Street" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/notification"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/editText6"
+    <TextView
+        android:id="@+id/tvSound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText5"
-        android:layout_alignRight="@+id/editText5"
-        android:layout_below="@+id/editText5"
-        android:ems="10"
-        android:hint="City" />
+        android:layout_alignLeft="@+id/tvNotification"
+        android:layout_below="@+id/tvNotification"
+        android:layout_marginTop="14dp"
+        android:text="@string/Sound"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/editText7"
+    <ToggleButton
+        android:id="@+id/tbNotificationToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText6"
-        android:layout_alignRight="@+id/editText6"
-        android:layout_below="@+id/editText6"
-        android:ems="10"
-        android:hint="Optional" />
-
-    <EditText
-        android:id="@+id/editText10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText9"
-        android:layout_below="@+id/editText9"
-        android:ems="10"
-        android:hint="Optional" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/textView2"
-        android:src="@drawable/profile_pic" />
-
-    <EditText
-        android:id="@+id/editText9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView7"
-        android:layout_toLeftOf="@+id/editText4"
-        android:ems="10"
-        android:hint="Emer_Phone" />
-
-    <EditText
-        android:id="@+id/editText4"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView5"
+        android:layout_alignBaseline="@+id/tvNotification"
+        android:layout_alignBottom="@+id/tvNotification"
         android:layout_alignParentRight="true"
-        android:ems="10"
-        android:hint="Sex" />
+        android:layout_marginRight="52dp"
+        android:text="@string/On" />
 
-    <TextView
-        android:id="@+id/textView6"
+    <SeekBar
+        android:id="@+id/sbSound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvSound"
+        android:layout_below="@+id/tvSound"
+        android:layout_marginTop="14dp" />
+
+    <CheckBox
+        android:id="@+id/cbMute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText9"
-        android:layout_below="@+id/editText7"
-        android:text="Phone"
+        android:layout_alignLeft="@+id/sbSound"
+        android:layout_below="@+id/sbSound"
+        android:text="@string/mute" />
+
+    <CheckBox
+        android:id="@+id/cbVibrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cbMute"
+        android:layout_below="@+id/cbMute"
+        android:text="@string/vibrate" />
+
+    <TextView
+        android:id="@+id/tvFontSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cbVibrate"
+        android:layout_below="@+id/cbVibrate"
+        android:text="@string/font_size"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/editText8"
+    <RadioGroup
+        android:id="@+id/rgTextSizes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView6"
-        android:layout_alignBottom="@+id/textView6"
-        android:layout_alignParentRight="true"
-        android:ems="10"
-        android:hint="Phone" />
+        android:layout_alignLeft="@+id/tvFontSize"
+        android:layout_below="@+id/tvFontSize" >
+
+        <RadioButton
+            android:id="@+id/rSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/S"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <RadioButton
+            android:id="@+id/rMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/M" 
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RadioButton
+            android:id="@+id/rLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/L" 
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+    </RadioGroup>
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvGPS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_below="@+id/editText8"
-        android:text="Emer Phone"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_alignTop="@+id/textView3"
-        android:ems="10"
-        android:hint="Age" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView1"
-        android:layout_alignRight="@+id/editText4"
-        android:layout_marginRight="14dp"
-        android:ems="10"
-        android:hint="Last Name" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText2"
-        android:layout_alignLeft="@+id/textView1"
-        android:text="Last Name"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="17dp"
-        android:ems="10"
-        android:hint="First Name" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editText1"
-        android:layout_toLeftOf="@+id/editText1"
-        android:text="First Name"
+        android:layout_alignLeft="@+id/rgTextSizes"
+        android:layout_below="@+id/rgTextSizes"
+        android:layout_marginTop="15dp"
+        android:text="@string/GPS"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvGPSOn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_below="@+id/imageView1"
-        android:text="Age"
+        android:layout_alignBaseline="@+id/tvGPS"
+        android:layout_alignBottom="@+id/tvGPS"
+        android:layout_alignRight="@+id/tbNotificationToggle"
+        android:layout_marginRight="18dp"
+        android:text="@string/On"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvGPSOff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignRight="@+id/textView2"
-        android:text="Sex"
+        android:layout_alignBaseline="@+id/tvGPSOn"
+        android:layout_alignBottom="@+id/tvGPSOn"
+        android:layout_marginLeft="14dp"
+        android:layout_toRightOf="@+id/tvGPSOn"
+        android:hint="@string/Off"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/tvBluetooth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_below="@+id/editText3"
-        android:text="Address"
+        android:layout_alignLeft="@+id/tvGPS"
+        android:layout_below="@+id/tvGPS"
+        android:layout_marginTop="14dp"
+        android:text="@string/bluetooth"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvBluetoothOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvBluetooth"
+        android:layout_alignBottom="@+id/tvBluetooth"
+        android:layout_alignLeft="@+id/tvGPSOn"
+        android:text="@string/On"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvBluetoothOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvBluetoothOn"
+        android:layout_alignBottom="@+id/tvBluetoothOn"
+        android:layout_alignLeft="@+id/tvGPSOff"
+        android:hint="@string/Off"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

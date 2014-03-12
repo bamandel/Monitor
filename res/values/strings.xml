@@ -12,7 +12,7 @@
     
     <!-- Need update in Login to fill all data fields -->
     <string name="profile_pic">Profile Picture</string>
-    <string name="login_user">Unknown</string>
+    <string name="login_username_user">Unknown</string>
     <string name="login_password_user">Unknown</string>
     <string name="first_name_user">Unknown</string>
     <string name="last_name_user">Unknown</string>
@@ -52,5 +52,17 @@
     <string name="profile_button_string">Profile</string>
     <string name="options_button_string">Options</string>
     <string name="emergency_button_string">EMERGENCY</string>
+    <string name="notification">Notification</string>
+    <string name="Sound">Sound</string>
+    <string name="mute">Mute</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="font_size">Font Size</string>
+    <string name="L">Large</string>
+    <string name="M">Medium</string>
+    <string name="S">Small</string>
+    <string name="On">On</string>
+    <string name="Off">Off</string>
+    <string name="GPS">GPS</string>
+    <string name="bluetooth">Bluetooth</string>
 
 </resources>

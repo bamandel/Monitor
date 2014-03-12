@@ -25,56 +25,55 @@ public final class R {
         public static final int profile_pic=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080034;
+        public static final int action_settings=0x7f080033;
         public static final int bLogin=0x7f08000d;
+        public static final int cbMute=0x7f08001b;
         public static final int cbRememberMe=0x7f080010;
-        public static final int editText1=0x7f080027;
-        public static final int editText10=0x7f08001c;
-        public static final int editText2=0x7f080019;
-        public static final int editText3=0x7f080024;
-        public static final int editText4=0x7f080021;
-        public static final int editText5=0x7f080017;
-        public static final int editText6=0x7f08001a;
-        public static final int editText7=0x7f08001b;
-        public static final int editText8=0x7f080023;
-        public static final int editText9=0x7f08001d;
+        public static final int cbVibrate=0x7f08001c;
         public static final int emergency_button=0x7f080016;
         public static final int etPassword=0x7f08000c;
         public static final int etUsername=0x7f08000b;
         public static final int health_button=0x7f080013;
-        public static final int imageView1=0x7f08001e;
         public static final int ivLoginLogo=0x7f08000a;
         public static final int ivMainMenuLogo=0x7f080012;
-        public static final int ivProPic=0x7f080029;
+        public static final int ivProPic=0x7f080028;
         public static final int options_button=0x7f080015;
         public static final int profile_button=0x7f080014;
-        public static final int textView1=0x7f080025;
-        public static final int textView2=0x7f08001f;
-        public static final int textView3=0x7f080026;
-        public static final int textView4=0x7f080028;
-        public static final int textView5=0x7f080018;
-        public static final int textView6=0x7f080022;
-        public static final int textView7=0x7f080020;
-        public static final int tvAddress=0x7f080031;
-        public static final int tvAddressMsg=0x7f08002d;
-        public static final int tvAge=0x7f080030;
-        public static final int tvAgeMsg=0x7f08002c;
-        public static final int tvDr=0x7f080033;
-        public static final int tvEmergencyNumber=0x7f080032;
+        public static final int rLarge=0x7f080021;
+        public static final int rMedium=0x7f080020;
+        public static final int rSmall=0x7f08001f;
+        public static final int rgTextSizes=0x7f08001e;
+        public static final int sbSound=0x7f08001a;
+        public static final int tbNotificationToggle=0x7f080019;
+        public static final int tvAddress=0x7f080030;
+        public static final int tvAddressMsg=0x7f08002c;
+        public static final int tvAge=0x7f08002f;
+        public static final int tvAgeMsg=0x7f08002b;
+        public static final int tvBluetooth=0x7f080025;
+        public static final int tvBluetoothOff=0x7f080027;
+        public static final int tvBluetoothOn=0x7f080026;
+        public static final int tvDr=0x7f080032;
+        public static final int tvEmergencyNumber=0x7f080031;
         public static final int tvFallStatus=0x7f080002;
         public static final int tvFallStatusData=0x7f080007;
-        public static final int tvFirstName=0x7f08002e;
-        public static final int tvFirstNameMsg=0x7f08002a;
+        public static final int tvFirstName=0x7f08002d;
+        public static final int tvFirstNameMsg=0x7f080029;
+        public static final int tvFontSize=0x7f08001d;
+        public static final int tvGPS=0x7f080022;
+        public static final int tvGPSOff=0x7f080024;
+        public static final int tvGPSOn=0x7f080023;
         public static final int tvHeartRate=0x7f080000;
         public static final int tvHeartRateData=0x7f080005;
-        public static final int tvLastName=0x7f08002f;
-        public static final int tvLastNameMsg=0x7f08002b;
+        public static final int tvLastName=0x7f08002e;
+        public static final int tvLastNameMsg=0x7f08002a;
         public static final int tvLocation=0x7f080003;
         public static final int tvLocationData=0x7f080008;
+        public static final int tvNotification=0x7f080017;
         public static final int tvOverallHealth=0x7f080004;
         public static final int tvOverallHealthData=0x7f080009;
         public static final int tvRememberMe=0x7f08000f;
         public static final int tvSignUp=0x7f08000e;
+        public static final int tvSound=0x7f080018;
         public static final int tvTopRight=0x7f080011;
         public static final int tvWalkingSpeed=0x7f080001;
         public static final int tvWalkingSpeedData=0x7f080006;
@@ -98,11 +97,19 @@ public final class R {
         public static final int splash=0x7f070006;
     }
     public static final class string {
+        public static final int GPS=0x7f050033;
+        public static final int L=0x7f05002e;
+        public static final int M=0x7f05002f;
+        public static final int Off=0x7f050032;
+        public static final int On=0x7f050031;
+        public static final int S=0x7f050030;
+        public static final int Sound=0x7f05002a;
         public static final int action_settings=0x7f050001;
         public static final int address_user=0x7f05000c;
         public static final int age_user=0x7f05000b;
         public static final int alarm_sound=0x7f050016;
         public static final int app_name=0x7f050000;
+        public static final int bluetooth=0x7f050034;
         public static final int bluetooth_status=0x7f050014;
         public static final int called_dr=0x7f050005;
         public static final int current_dr_user=0x7f05000d;
@@ -113,6 +120,7 @@ public final class R {
         public static final int fall_status_string=0x7f05001a;
         public static final int first_name_string=0x7f050020;
         public static final int first_name_user=0x7f050009;
+        public static final int font_size=0x7f05002d;
         /**  Need of Strings to store data from Options Menu 
          */
         public static final int gps_status=0x7f050013;
@@ -130,8 +138,10 @@ public final class R {
         public static final int location_string=0x7f05001b;
         public static final int login_button_string=0x7f050024;
         public static final int login_password_user=0x7f050008;
-        public static final int login_user=0x7f050007;
+        public static final int login_username_user=0x7f050007;
         public static final int logo_text_string=0x7f050022;
+        public static final int mute=0x7f05002b;
+        public static final int notification=0x7f050029;
         public static final int options_button_string=0x7f050027;
         public static final int overall_health=0x7f050012;
         /**  Strings that are used for Widget names(ie Buttons, TextView, EditTexts, etc) 
@@ -147,6 +157,7 @@ public final class R {
         public static final int sign_up_text_string=0x7f050023;
         public static final int update_every_x=0x7f050017;
         public static final int username_hint_string=0x7f05001e;
+        public static final int vibrate=0x7f05002c;
         public static final int walking_speed=0x7f05000f;
         public static final int walking_speed_string=0x7f050019;
     }
