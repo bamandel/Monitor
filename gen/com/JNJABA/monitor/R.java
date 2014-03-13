@@ -97,69 +97,78 @@ public final class R {
         public static final int splash=0x7f070006;
     }
     public static final class string {
-        public static final int GPS=0x7f050033;
-        public static final int L=0x7f05002e;
-        public static final int M=0x7f05002f;
-        public static final int Off=0x7f050032;
-        public static final int On=0x7f050031;
-        public static final int S=0x7f050030;
-        public static final int Sound=0x7f05002a;
+        public static final int GPS=0x7f05003a;
+        public static final int L=0x7f050035;
+        public static final int M=0x7f050036;
+        public static final int Off=0x7f050039;
+        public static final int On=0x7f050038;
+        public static final int S=0x7f050037;
+        public static final int Sound=0x7f050031;
         public static final int action_settings=0x7f050001;
-        public static final int address_user=0x7f05000c;
-        public static final int age_user=0x7f05000b;
-        public static final int alarm_sound=0x7f050016;
+        public static final int address_user=0x7f050010;
+        public static final int age_user=0x7f05000c;
+        public static final int alarm_sound=0x7f05001d;
         public static final int app_name=0x7f050000;
-        public static final int bluetooth=0x7f050034;
-        public static final int bluetooth_status=0x7f050014;
+        public static final int bluetooth=0x7f05003b;
+        public static final int bluetooth_status=0x7f05001b;
         public static final int called_dr=0x7f050005;
-        public static final int current_dr_user=0x7f05000d;
+        public static final int current_dr_user=0x7f050011;
         public static final int current_location_x=0x7f050003;
         public static final int current_location_y=0x7f050004;
-        public static final int emergency_button_string=0x7f050028;
-        public static final int fall_status=0x7f050010;
-        public static final int fall_status_string=0x7f05001a;
-        public static final int first_name_string=0x7f050020;
-        public static final int first_name_user=0x7f050009;
-        public static final int font_size=0x7f05002d;
+        public static final int emergency_button_string=0x7f05002f;
+        public static final int fall_status=0x7f050017;
+        public static final int fall_status_string=0x7f050021;
+        public static final int first_name_string=0x7f050027;
+        public static final int first_name_user=0x7f05000a;
+        public static final int font_size=0x7f050034;
         /**  Need of Strings to store data from Options Menu 
          */
-        public static final int gps_status=0x7f050013;
+        public static final int gps_status=0x7f05001a;
         /**  Universal Strings 
          */
         public static final int has_fallen=0x7f050002;
-        public static final int health_button_string=0x7f050025;
+        public static final int health_button_string=0x7f05002c;
         /**  Need constant Update variables in HealthActivity 
          */
-        public static final int heart_rate=0x7f05000e;
-        public static final int heart_rate_string=0x7f05001c;
-        public static final int last_name_string=0x7f050021;
-        public static final int last_name_user=0x7f05000a;
-        public static final int location=0x7f050011;
-        public static final int location_string=0x7f05001b;
-        public static final int login_button_string=0x7f050024;
-        public static final int login_password_user=0x7f050008;
-        public static final int login_username_user=0x7f050007;
-        public static final int logo_text_string=0x7f050022;
-        public static final int mute=0x7f05002b;
-        public static final int notification=0x7f050029;
-        public static final int options_button_string=0x7f050027;
-        public static final int overall_health=0x7f050012;
+        public static final int heart_rate=0x7f050015;
+        public static final int heart_rate_string=0x7f050023;
+        public static final int height_user=0x7f05000d;
+        public static final int id_user=0x7f050007;
+        public static final int last_name_string=0x7f050028;
+        public static final int last_name_user=0x7f05000b;
+        public static final int location=0x7f050018;
+        public static final int location_string=0x7f050022;
+        public static final int login_button_string=0x7f05002b;
+        public static final int login_password_user=0x7f050009;
+        public static final int login_username_user=0x7f050008;
+        public static final int logo_text_string=0x7f050029;
+        public static final int mute=0x7f050032;
+        public static final int name_emergency=0x7f050013;
+        public static final int notification=0x7f050030;
+        public static final int options_button_string=0x7f05002e;
+        public static final int overall_health=0x7f050019;
         /**  Strings that are used for Widget names(ie Buttons, TextView, EditTexts, etc) 
          */
-        public static final int overall_health_string=0x7f050018;
-        public static final int password_hint_string=0x7f05001d;
-        public static final int profile_button_string=0x7f050026;
+        public static final int overall_health_string=0x7f05001f;
+        public static final int password_hint_string=0x7f050024;
+        /**  Emergency Contact Info 
+         */
+        public static final int phone_number_emergency=0x7f050012;
+        public static final int profile_button_string=0x7f05002d;
         /**  Need update in Login to fill all data fields 
          */
         public static final int profile_pic=0x7f050006;
-        public static final int remember_me_string=0x7f05001f;
-        public static final int screen_color=0x7f050015;
-        public static final int sign_up_text_string=0x7f050023;
-        public static final int update_every_x=0x7f050017;
-        public static final int username_hint_string=0x7f05001e;
-        public static final int vibrate=0x7f05002c;
-        public static final int walking_speed=0x7f05000f;
-        public static final int walking_speed_string=0x7f050019;
+        public static final int remember_me_string=0x7f050026;
+        public static final int screen_color=0x7f05001c;
+        public static final int sex_user=0x7f05000f;
+        public static final int sign_up_text_string=0x7f05002a;
+        public static final int update_every_x=0x7f05001e;
+        public static final int user_relation_emergency=0x7f050014;
+        public static final int username_hint_string=0x7f050025;
+        public static final int vibrate=0x7f050033;
+        public static final int walking_speed=0x7f050016;
+        public static final int walking_speed_string=0x7f050020;
+        public static final int weight_user=0x7f05000e;
     }
     public static final class style {
         /** 

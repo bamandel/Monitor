@@ -1,40 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    
+    <!-- THIS METHOD OF SHARING DATA WON'T WORK,
+    I WILL IMPLEMENT SHARED PREFERENCES -->
+    
+    
+    
     <string name="app_name">Monitor</string>
     <string name="action_settings">Settings</string>
     
-    <!-- Universal Strings -->
+    <!-- Universal Strings Brian-->
     <string name="has_fallen">Unknown</string>
     <string name="current_location_x">Unknown</string>
     <string name="current_location_y">Unknown</string>
     <string name="called_dr">Unknown</string>
     
-    <!-- Need update in Login to fill all data fields -->
+    <!-- Need update in Login to fill all data fields Jake-->
     <string name="profile_pic">Profile Picture</string>
+    <string name="id_user">00000</string>
     <string name="login_username_user">Unknown</string>
     <string name="login_password_user">Unknown</string>
     <string name="first_name_user">Unknown</string>
     <string name="last_name_user">Unknown</string>
     <string name="age_user">Unknown</string>
+    <string name="height_user">Unknown</string>
+    <string name="weight_user">Unknown</string>
+    <string name="sex_user">Unknown</string>
     <string name="address_user">Unknown</string>
     <string name="current_dr_user">Unknown</string>
     
-    <!-- Need constant Update variables in HealthActivity -->
+    <!-- Emergency Contact Info Yutthana-->
+    <string name="phone_number_emergency">Unknown</string>
+    <string name="name_emergency">Unknown</string>
+    <string name="user_relation_emergency">Unknown</string>
+    
+    <!-- Need constant Update variables in HealthActivity Troy-->
     <string name="heart_rate">0</string>
     <string name="walking_speed">0</string>
-    <string name="fall_status">0</string>
+    <string name="fall_status">Unknown</string>
     <string name="location">Unknown</string>
     <string name="overall_health">Unknown</string>
     
-    <!-- Need of Strings to store data from Options Menu -->
+    <!-- Need of Strings to store data from Options Menu Yutthana-->
     <string name="gps_status">Unknown</string>
     <string name="bluetooth_status">Unknown</string>
     <string name="screen_color">Unknown</string>
     <string name="alarm_sound">Unknown</string>
     <string name="update_every_x">Unknown</string>
     
-    <!-- Strings that are used for Widget names(ie Buttons, TextView, EditTexts, etc) -->
+    <!-- Strings that are used for Widget names (ie Buttons, TextView, EditTexts, etc) Everyone -->
     <string name="overall_health_string">Overall Health:</string>
     <string name="walking_speed_string">Walking Speed:</string>
     <string name="fall_status_string">Fall Status:</string>

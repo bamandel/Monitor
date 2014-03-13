@@ -1,6 +1,7 @@
 package com.JNJABA.monitor;
 
-import android.app.IntentService;
+import android.app.Notification;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Criteria;
@@ -8,26 +9,30 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.HandlerThread;
+import android.os.IBinder;
+import android.os.Looper;
 
-public class MainMenuIntentService extends IntentService {
+public class MainMenuService extends Service {
 	private static final String TAG = "Monitor-Service";
 	private static final int FAST = 1;
 	private static final int SLOW = 0;
 	
-	private double lastLocationLatitude;
-	private double lastLocationLongitude;
+	private Location lastLocation;
 	private boolean hasFallen = false;
 	
 	private final int UPDATE_TIME = 900000;       //15 min
 	private final int UPDATE_DISTANCE = 4000000;  //Span of the continental US
 	
-	public MainMenuIntentService() {
-		super("MainMenuIntentService");
-	}
-
-	@Override
-	protected void onHandleIntent(Intent intent) {
+	public void onCreate() {
+		startForeground(1, new Notification());
+		
 		handleActionMonitor();
+	}
+	
+	//The intent will contain any data the service needs to use
+	public int onStartCommand(Intent intent, int flags, int startId) {	
+		return START_CONTINUATION_MASK;
 	}
 	
 	//Start Monitoring for fall
@@ -91,10 +96,7 @@ public class MainMenuIntentService extends IntentService {
 			locationManager.requestLocationUpdates(bestProvider, 0, 0, locationListener);
 		}
 		
-		//I have to run it much like we ran the graphics class
-		
-		lastLocationLongitude = locationManager.getLastKnownLocation(bestProvider).getLongitude();
-		lastLocationLatitude = locationManager.getLastKnownLocation(bestProvider).getLatitude();
+		lastLocation = locationManager.getLastKnownLocation(bestProvider);
 	}
 	
 	//Sends data to Server periodically or on Emergency
@@ -108,9 +110,19 @@ public class MainMenuIntentService extends IntentService {
 		return false;
 	}
 	
-	//Warns the user that a fall has been detected and if warning is not
-	//promptly answered emergency numbers are called and data is sent i.e. GPS is called for loc
+	//Starts the activity to warn of fall. last GPS location is sent
 	private void sendWarning() {
+		Intent emergency = new Intent(getApplicationContext(), EmergencyActivity.class);
 		
+		emergency.putExtra("latitude", lastLocation.getLatitude());
+		emergency.putExtra("longitude", lastLocation.getLongitude());
+		
+		startActivity(emergency);
+	}
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
