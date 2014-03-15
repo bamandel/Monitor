@@ -1,83 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    
-    <!-- THIS METHOD OF SHARING DATA WON'T WORK,
-    I WILL IMPLEMENT SHARED PREFERENCES -->
-    
-    
-    
     <string name="app_name">Monitor</string>
     <string name="action_settings">Settings</string>
     
-    <!-- Universal Strings Brian-->
-    <string name="has_fallen">Unknown</string>
-    <string name="current_location_x">Unknown</string>
-    <string name="current_location_y">Unknown</string>
-    <string name="called_dr">Unknown</string>
+    <!-- The key values for the map used to access Project data 
+    So if you want to get the data stored at the latitude you call 
+    settings.getFloat(@string/user_location_latitude) -->
     
-    <!-- Need update in Login to fill all data fields Jake-->
-    <string name="profile_pic">Profile Picture</string>
-    <string name="id_user">00000</string>
-    <string name="login_username_user">Unknown</string>
-    <string name="login_password_user">Unknown</string>
-    <string name="first_name_user">Unknown</string>
-    <string name="last_name_user">Unknown</string>
-    <string name="age_user">Unknown</string>
-    <string name="height_user">Unknown</string>
-    <string name="weight_user">Unknown</string>
-    <string name="sex_user">Unknown</string>
-    <string name="address_user">Unknown</string>
-    <string name="current_dr_user">Unknown</string>
+    <!-- The way to access these data fields is to call 
+    getResources().getString(R.string.user_username) -->
     
-    <!-- Emergency Contact Info Yutthana-->
-    <string name="phone_number_emergency">Unknown</string>
-    <string name="name_emergency">Unknown</string>
-    <string name="user_relation_emergency">Unknown</string>
+    <string name="monitor_data">Monitor</string>
     
-    <!-- Need constant Update variables in HealthActivity Troy-->
-    <string name="heart_rate">0</string>
-    <string name="walking_speed">0</string>
-    <string name="fall_status">Unknown</string>
-    <string name="location">Unknown</string>
-    <string name="overall_health">Unknown</string>
+    <!-- Jakes key strings -->
     
-    <!-- Need of Strings to store data from Options Menu Yutthana-->
-    <string name="gps_status">Unknown</string>
-    <string name="bluetooth_status">Unknown</string>
-    <string name="screen_color">Unknown</string>
-    <string name="alarm_sound">Unknown</string>
-    <string name="update_every_x">Unknown</string>
+    <string name="user_username">username</string>
+    <string name="user_password">password</string>
     
-    <!-- Strings that are used for Widget names (ie Buttons, TextView, EditTexts, etc) Everyone -->
+    <!-- Jake and Yutthana's strings -->
+    
+    <string name="user_first_name">first name</string>
+    <string name="user_last_name">last name</string>
+    <string name="user_age">age</string>
+    <string name="user_sex">sex</string>
+    <string name="user_height">height</string>
+    <string name="user_weight">weight</string>
+    <string name="user_email">email</string>
+    <string name="user_BMI">bmi</string>
+    <string name="user_address">normal address</string>
+    <string name="emergency_first_name">emergency first name</string>
+    <string name="emergency_last_name">emergency last name</string>
+    <string name="emergency_relation">relation</string>
+    <string name="emergency_phone_number">emergency phone number</string>
+    
+    <!-- Yutthana's key strings -->
+    
+    <string name="gps_status">gps status</string>
+    <string name="bluetooth_status">bluetooth status</string>
+    <string name="notification_status">notification status</string>
+    <string name="font_size">font size</string>
+    
+    <!-- Brian and Troy's key strings -->
+    
+    <string name="user_location_latitude">location latitude</string>
+    <string name="user_location_longitude">location longitude</string>
+    <string name="user_walking_speed">walking speed</string>
+    <string name="user_fall_status">fall status</string>
+    <string name="user_overall_health">overall health</string>
+    <string name="user_heart_rate">heartrate</string>
+    <string name="location">temp TextView name</string>
+    
+    <!-- Strings that are used for Widget names (ie Buttons, TextView, EditTexts, etc) -->
+    
+    <string name="logo_text_string">LOGO</string>
+    
+    <!-- Login Widget Strings -->
+    
+    <string name="remember_me_string">Remember Me?</string>
+    <string name="password_hint_string">Password</string>
+    <string name="username_hint_string">Username</string>
+    <string name="sign_up_text_string">Sign up</string>
+    <string name="login_button_string">Login</string>
+    
+    <!-- Health Widget Strings -->
+    
     <string name="overall_health_string">Overall Health:</string>
     <string name="walking_speed_string">Walking Speed:</string>
     <string name="fall_status_string">Fall Status:</string>
     <string name="location_string">Location:</string>
     <string name="heart_rate_string">Heart rate:</string>
-    <string name="password_hint_string">Password</string>
-    <string name="username_hint_string">Username</string>
-    <string name="remember_me_string">Remember Me?</string>
-    <string name="first_name_string">First Name</string>
-    <string name="last_name_string">Last Name</string>
-    <string name="logo_text_string">LOGO</string>
-    <string name="sign_up_text_string">Sign up</string>
-    <string name="login_button_string">Login</string>
+    
+    <!-- Main Menu Widget Strings -->
+    
     <string name="health_button_string">Health</string>
     <string name="profile_button_string">Profile</string>
     <string name="options_button_string">Options</string>
     <string name="emergency_button_string">EMERGENCY</string>
-    <string name="notification">Notification</string>
-    <string name="Sound">Sound</string>
-    <string name="mute">Mute</string>
-    <string name="vibrate">Vibrate</string>
-    <string name="font_size">Font Size</string>
-    <string name="L">Large</string>
-    <string name="M">Medium</string>
-    <string name="S">Small</string>
-    <string name="On">On</string>
-    <string name="Off">Off</string>
-    <string name="GPS">GPS</string>
-    <string name="bluetooth">Bluetooth</string>
+    
+    <!-- Options Widget Strings -->
+    
+    <string name="notification_string">Notification</string>
+    <string name="sound_string">Sound</string>
+    <string name="mute_string">Mute</string>
+    <string name="vibrate_string">Vibrate</string>
+    <string name="font_size_string">Font Size</string>
+    <string name="L_string">Large</string>
+    <string name="M_string">Medium</string>
+    <string name="S_string">Small</string>
+    <string name="on_string">On</string>
+    <string name="off_string">Off</string>
+    <string name="GPS_string">GPS</string>
+    <string name="bluetooth_string">Bluetooth</string>
+    
+    <!-- Profile Widget Strings -->
+    
+    <string name="user_first_name_string">First Name:</string>
+    <string name="user_last_name_string">Last Name:</string>
+    <string name="user_age_string">Age:</string>
+    <string name="user_address_string">Address:</string>
+    <string name="profile_pic_string">Profile Picture</string>
+    
+    <!-- Emergency Widget Strings -->
+    
+    <string name="ok_string">I am OK</string>
+    <string name="help_string">HELP</string>
+    <string name="emergency_detected_string">EMERGENCY_DETECTED</string>
+    <string name="countdown_pic_string">Countdown Pic</string>
 
 </resources>

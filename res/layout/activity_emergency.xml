@@ -8,4 +8,44 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".EmergencyActivity" >
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="46dp"
+        android:text="@string/ok_string" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="85dp"
+        android:layout_toLeftOf="@+id/imageView1"
+        android:text="@string/help_string" />
+
+    <TextView
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp"
+        android:text="@string/emergency_detected_string" >
+
+        <requestFocus />
+    </TextView>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:contentDescription="@string/countdown_pic_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="78dp"
+        android:src="@drawable/ic_launcher" />
+
 </RelativeLayout>

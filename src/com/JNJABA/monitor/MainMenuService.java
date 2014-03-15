@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -20,11 +21,17 @@ public class MainMenuService extends Service {
 	
 	private Location lastLocation;
 	private boolean hasFallen = false;
+	private SharedPreferences settings;
+	private SharedPreferences.Editor editor;
+	private int startId;
 	
 	private final int UPDATE_TIME = 900000;       //15 min
 	private final int UPDATE_DISTANCE = 4000000;  //Span of the continental US
 	
 	public void onCreate() {
+		settings = getApplicationContext().getSharedPreferences(getResources().getString(R.string.monitor_data), MODE_PRIVATE);
+		editor = settings.edit();
+		
 		startForeground(1, new Notification());
 		
 		handleActionMonitor();
@@ -32,12 +39,15 @@ public class MainMenuService extends Service {
 	
 	//The intent will contain any data the service needs to use
 	public int onStartCommand(Intent intent, int flags, int startId) {	
+		this.startId = startId;
+		
 		return START_CONTINUATION_MASK;
 	}
 	
 	//Start Monitoring for fall
 	private void handleActionMonitor() {
 		callGPS(SLOW, false);
+		
 		if(fallDetected()) {
 			callGPS(FAST, hasFallen);
 			sendWarning();
@@ -97,15 +107,28 @@ public class MainMenuService extends Service {
 		}
 		
 		lastLocation = locationManager.getLastKnownLocation(bestProvider);
+		
+		//Stores lastLocation into phone app memory for later access
+		editor.putLong(getResources().getString(R.string.user_location_latitude),
+				Double.doubleToRawLongBits(lastLocation.getLatitude()));
+		editor.putLong(getResources().getString(R.string.user_location_longitude),
+				Double.doubleToRawLongBits(lastLocation.getLongitude()));
 	}
 	
 	//Sends data to Server periodically or on Emergency
 	private void storeData() {
 		
+		
 	}
 	
 	//Runs the fall detection algorithm
 	private boolean fallDetected() {
+		
+		//Test for fall
+		if(false) {
+			editor.putBoolean(getResources().getString(R.string.user_fall_status), true);
+			return true;
+		}
 		
 		return false;
 	}

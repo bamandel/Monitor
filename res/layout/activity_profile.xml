@@ -15,7 +15,7 @@
             android:id="@+id/ivProPic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/profile_pic"
+            android:contentDescription="@string/profile_pic_string"
             android:src="@drawable/profile_pic" />
 
         <RelativeLayout
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="First Name:"
+                android:text="@string/user_first_name_string"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginBottom="10dp" />
 
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/tvFirstNameMsg"
-                android:text="Last Name:"
+                android:text="@string/user_last_name_string"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginBottom="10dp" />
 
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/tvLastNameMsg"
-                android:text="Age:"
+                android:text="@string/user_age_string"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginBottom="10dp" />
 
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/tvAgeMsg"
-                android:text="Address:"
+                android:text="@string/user_address_string"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_marginBottom="10dp" />
 
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/tvLastNameMsg"
                 android:layout_alignParentRight="true"
-                android:text="@string/first_name_user" />
+                android:text="@string/user_first_name" />
 
             <TextView
                 android:id="@+id/tvLastName"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/tvAgeMsg"
                 android:layout_alignParentRight="true"
-                android:text="@string/last_name_user" />
+                android:text="@string/user_last_name" />
 
             <TextView
                 android:id="@+id/tvAge"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/tvAddressMsg"
                 android:layout_alignParentRight="true"
-                android:text="@string/age_user" />
+                android:text="@string/user_age" />
 
             <TextView
                 android:id="@+id/tvAddress"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:text="@string/address_user" />
+                android:text="@string/user_address" />
 
         </RelativeLayout>
     </LinearLayout>

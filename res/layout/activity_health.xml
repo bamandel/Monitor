@@ -75,7 +75,7 @@
         android:layout_row="0"
         android:layout_marginBottom="20dip"
         android:layout_marginTop="20dip"
-        android:text="@string/heart_rate" />
+        android:text="@string/user_heart_rate" />
 
     <TextView
         android:id="@+id/tvWalkingSpeedData"
@@ -86,7 +86,7 @@
         android:layout_row="1"
         android:layout_marginBottom="20dip"
         android:layout_marginTop="20dip"
-        android:text="@string/walking_speed" />
+        android:text="@string/user_walking_speed" />
 
     <TextView
         android:id="@+id/tvFallStatusData"
@@ -97,7 +97,7 @@
         android:layout_row="2"
         android:layout_marginBottom="20dip"
         android:layout_marginTop="20dip"
-        android:text="@string/fall_status" />
+        android:text="@string/user_fall_status" />
 
     <TextView
         android:id="@+id/tvLocationData"
@@ -119,6 +119,6 @@
         android:layout_marginBottom="20dip"
         android:layout_marginTop="20dip"
         android:layout_row="4"
-        android:text="@string/overall_health" />
+        android:text="@string/user_overall_health" />
     
 </GridLayout>

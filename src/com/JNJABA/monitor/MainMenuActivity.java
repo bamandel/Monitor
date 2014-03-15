@@ -10,13 +10,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainMenuActivity extends Activity {
+	private Intent serviceIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 		
-		//Intent serviceIntent = new Intent(this, MainMenuIntentService.class);
+		serviceIntent = new Intent(this, MainMenuService.class);
 		//startService(serviceIntent);
 		
 		Button mHealthButton = (Button) findViewById(R.id.health_button);
@@ -57,7 +58,16 @@ public class MainMenuActivity extends Activity {
 			}
 		});
 	}
-
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		
+		//stopService(serviceIntent);
+		
+		super.onStop();
+	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

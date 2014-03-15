@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:text="@string/notification"
+        android:text="@string/notification_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_alignLeft="@+id/tvNotification"
         android:layout_below="@+id/tvNotification"
         android:layout_marginTop="14dp"
-        android:text="@string/Sound"
+        android:text="@string/sound_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ToggleButton
@@ -37,7 +37,7 @@
         android:layout_alignBottom="@+id/tvNotification"
         android:layout_alignParentRight="true"
         android:layout_marginRight="52dp"
-        android:text="@string/On" />
+        android:text="@string/on_string" />
 
     <SeekBar
         android:id="@+id/sbSound"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/sbSound"
         android:layout_below="@+id/sbSound"
-        android:text="@string/mute" />
+        android:text="@string/mute_string" />
 
     <CheckBox
         android:id="@+id/cbVibrate"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/cbMute"
         android:layout_below="@+id/cbMute"
-        android:text="@string/vibrate" />
+        android:text="@string/vibrate_string" />
 
     <TextView
         android:id="@+id/tvFontSize"
@@ -84,21 +84,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="@string/S"
+            android:text="@string/S_string"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <RadioButton
             android:id="@+id/rMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/M" 
+            android:text="@string/M_string" 
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RadioButton
             android:id="@+id/rLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/L" 
+            android:text="@string/L_string" 
             android:textAppearance="?android:attr/textAppearanceLarge"/>
     </RadioGroup>
 
@@ -109,7 +109,7 @@
         android:layout_alignLeft="@+id/rgTextSizes"
         android:layout_below="@+id/rgTextSizes"
         android:layout_marginTop="15dp"
-        android:text="@string/GPS"
+        android:text="@string/GPS_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -120,7 +120,7 @@
         android:layout_alignBottom="@+id/tvGPS"
         android:layout_alignRight="@+id/tbNotificationToggle"
         android:layout_marginRight="18dp"
-        android:text="@string/On"
+        android:text="@string/on_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -131,7 +131,7 @@
         android:layout_alignBottom="@+id/tvGPSOn"
         android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/tvGPSOn"
-        android:hint="@string/Off"
+        android:hint="@string/off_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -141,7 +141,7 @@
         android:layout_alignLeft="@+id/tvGPS"
         android:layout_below="@+id/tvGPS"
         android:layout_marginTop="14dp"
-        android:text="@string/bluetooth"
+        android:text="@string/bluetooth_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -151,7 +151,7 @@
         android:layout_alignBaseline="@+id/tvBluetooth"
         android:layout_alignBottom="@+id/tvBluetooth"
         android:layout_alignLeft="@+id/tvGPSOn"
-        android:text="@string/On"
+        android:text="@string/on_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -161,7 +161,7 @@
         android:layout_alignBaseline="@+id/tvBluetoothOn"
         android:layout_alignBottom="@+id/tvBluetoothOn"
         android:layout_alignLeft="@+id/tvGPSOff"
-        android:hint="@string/Off"
+        android:hint="@string/off_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
