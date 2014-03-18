@@ -9,25 +9,16 @@
     tools:context=".EmergencyActivity" >
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/bOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
+        android:layout_alignBottom="@+id/bHELP"
         android:layout_alignParentRight="true"
         android:layout_marginRight="46dp"
         android:text="@string/ok_string" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="85dp"
-        android:layout_toLeftOf="@+id/imageView1"
-        android:text="@string/help_string" />
-
     <TextView
-        android:id="@+id/editText1"
+        android:id="@+id/tvEmergencyDetected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -39,13 +30,22 @@
     </TextView>
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/ivCountdownFrame"
         android:contentDescription="@string/countdown_pic_string"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
+        android:layout_above="@+id/bOK"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="78dp"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/countdown_animation" />
+
+    <Button
+        android:id="@+id/bHELP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="97dp"
+        android:layout_toLeftOf="@+id/ivCountdownFrame"
+        android:text="@string/help_string" />
 
 </RelativeLayout>

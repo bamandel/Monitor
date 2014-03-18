@@ -18,7 +18,7 @@ public class MainMenuActivity extends Activity {
 		setContentView(R.layout.activity_main_menu);
 		
 		serviceIntent = new Intent(this, MainMenuService.class);
-		//startService(serviceIntent);
+		startService(serviceIntent);
 		
 		Button mHealthButton = (Button) findViewById(R.id.health_button);
 		mHealthButton.setOnClickListener(new OnClickListener() {
@@ -54,7 +54,7 @@ public class MainMenuActivity extends Activity {
 			public void onClick(View v) {
 				Intent call = new Intent(Intent.ACTION_CALL);
 				call.setData(Uri.parse("tel:16178164614"));
-				startActivity(call);
+				//startActivity(call);
 			}
 		});
 	}
