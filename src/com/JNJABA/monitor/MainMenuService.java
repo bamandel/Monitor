@@ -17,18 +17,19 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.widget.Toast;
 
 public class MainMenuService extends Service implements LocationListener{
 	private static final String TAG = "Monitor-Service";
-	private static final int DELAY = 500;
+	private static final int DELAY = 1000;
 	private static final int FAST = 1;
 	private static final int SLOW = 0;
 	private static final int NOTIFICATION_ID = 1;
 	
 	private Location lastLocation;
 	private LocationManager locationManager;
-	private boolean hasFallen = true;
+	private boolean hasFallen = false;
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
 	private int startId;
@@ -63,23 +64,20 @@ public class MainMenuService extends Service implements LocationListener{
 		callGPS(SLOW, hasFallen);
 		
 		//Need to redo the handler to deal with new threads
-		final Handler handler = new Handler() {
-			public void handleMessage(Message msg) {
-				
-			}
-		};
+		final Handler handler = new Handler();
 		
 		Thread background = new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				handleActionMonitor();
-				
-				Bundle b = new Bundle();
-				b.putDouble("latitude", lastLocation.getLatitude());
-				b.putDouble("longitude", lastLocation.getLongitude());
-				b.putBoolean("fallen", hasFallen);
+				try{
+					log("Thread starting");
+					handleActionMonitor();
+				} catch (Exception e) {
+					log("Exception caught");
+					log(e.getMessage());
+				}
 				
 				handler.postDelayed(this, DELAY);
 			}
@@ -87,6 +85,12 @@ public class MainMenuService extends Service implements LocationListener{
 		});
 		
 		background.start();
+		if(background.isAlive())
+			log("Background Thread is alive");
+		if(!background.isAlive())
+			log("Background Thread died");
+		if(background.isInterrupted())
+			log("Interupted??");
 		
 		return START_CONTINUATION_MASK;
 	}
@@ -116,13 +120,16 @@ public class MainMenuService extends Service implements LocationListener{
 		editor.putString(getResources().getString(R.string.user_location_longitude),
 				String.valueOf(lastLocation.getLongitude()));
 		
+		log(Double.toString(lastLocation.getLatitude()));
+		log(Double.toString(lastLocation.getLongitude()));
+		
 		editor.commit();
 	}
 	
 	//Sends data to Server periodically or on Emergency
 	private void storeData() {
 		//Will most likely have to start a new thread
-		
+		return;
 	}
 	
 	//Runs the fall detection algorithm
@@ -184,5 +191,14 @@ public class MainMenuService extends Service implements LocationListener{
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void log(String msg) {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Log.i(TAG, msg);
 	}
 }

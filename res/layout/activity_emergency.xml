@@ -37,7 +37,7 @@
         android:layout_above="@+id/bOK"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="78dp"
-        android:src="@drawable/countdown_animation" />
+        android:drawable="@drawable/countdown_animation" />
 
     <Button
         android:id="@+id/bHELP"

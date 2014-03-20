@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,14 +12,19 @@ import android.widget.Button;
 
 public class MainMenuActivity extends Activity {
 	private Intent serviceIntent;
+	private SharedPreferences settings;
+	private SharedPreferences.Editor editor;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 		
+		settings = getApplicationContext().getSharedPreferences(getResources().getString(R.string.monitor_data), MODE_PRIVATE);
+		editor = settings.edit();
+		
 		serviceIntent = new Intent(this, MainMenuService.class);
-		startService(serviceIntent);
+		//startService(serviceIntent);
 		
 		Button mHealthButton = (Button) findViewById(R.id.health_button);
 		mHealthButton.setOnClickListener(new OnClickListener() {
@@ -53,7 +59,7 @@ public class MainMenuActivity extends Activity {
 			// Call Emergency number
 			public void onClick(View v) {
 				Intent call = new Intent(Intent.ACTION_CALL);
-				call.setData(Uri.parse("tel:16178164614"));
+				call.setData(Uri.parse(settings.getString(getResources().getString(R.string.emergency_phone_number), "tel:16178164614")));
 				//startActivity(call);
 			}
 		});

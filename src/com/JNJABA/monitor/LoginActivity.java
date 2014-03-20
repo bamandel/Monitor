@@ -50,10 +50,9 @@ public class LoginActivity extends Activity {
 		editor.putString(getResources().getString(R.string.user_fall_status), "true");
 		editor.putString(getResources().getString(R.string.user_heart_rate), "87");
 		editor.putString(getResources().getString(R.string.user_overall_health), "7");
-		if(editor.commit())
-			Toast.makeText(this, "Data has been commited to file", Toast.LENGTH_LONG).show();
-		else
-			Toast.makeText(this, "ERROR", Toast.LENGTH_LONG).show();
+		
+		editor.commit();
+		//Mock data values ^
 		
 	}
 	

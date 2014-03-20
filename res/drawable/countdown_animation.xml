@@ -13,5 +13,6 @@
     <item android:drawable="@drawable/three" android:duration="1000" />
     <item android:drawable="@drawable/two" android:duration="1000" />
     <item android:drawable="@drawable/one" android:duration="1000" />
+    <item android:drawable="@drawable/zero" android:duration="1000" />
 
 </animation-list>
