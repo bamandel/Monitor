@@ -105,7 +105,7 @@
     
     <string name="ok_string">I am OK</string>
     <string name="help_string">HELP</string>
-    <string name="emergency_detected_string">EMERGENCY_DETECTED</string>
+    <string name="emergency_detected_string">EMERGENCY DETECTED</string>
     <string name="countdown_pic_string">Countdown Pic</string>
 
 </resources>

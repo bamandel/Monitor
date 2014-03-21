@@ -24,6 +24,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/emergency_detected_string" >
 
         <requestFocus />

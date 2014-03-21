@@ -1,48 +1,52 @@
 package com.JNJABA.monitor;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
+import android.media.AudioManager;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class EmergencyActivity extends Activity {
 	private static final int ONE_SEC = 1000;
 	private static final int TEN_SEC = 10 * ONE_SEC;
 	
-	private SharedPreferences settings;
-	private SharedPreferences.Editor editor;
-	
 	private AnimationDrawable countdownAnimation;
 	private ImageView ivCountdownFrame;
 	
-	/*
-	 * (non-Javadoc)
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
-	 * 
-	 * Maybe call the GPS and send data from this activity
-	 */
+	private AudioManager audio;
+	private int volume = 0;
+	private Ringtone ringtone;
+	
+	private boolean getHelp = true;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_emergency);
 		
-		settings = getApplicationContext().getSharedPreferences(getResources().getString(R.string.monitor_data), MODE_PRIVATE);
-		editor = settings.edit();
+		audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		volume = audio.getStreamMaxVolume(AudioManager.STREAM_ALARM);
+		audio.setStreamVolume(AudioManager.STREAM_ALARM, volume, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
+		ringtone = RingtoneManager.getRingtone(getApplicationContext(), RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM));
+		if(ringtone != null) {
+			ringtone.setStreamType(AudioManager.STREAM_ALARM);
+			ringtone.play();
+		}
+		
+		getHelp = true;
 		
 		Button bOK = (Button) findViewById(R.id.bOK);
 		Button bHELP = (Button) findViewById(R.id.bHELP);
@@ -52,6 +56,8 @@ public class EmergencyActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				ringtone.stop();
+				getHelp = false;
 				finish();
 			}
 		});
@@ -67,19 +73,26 @@ public class EmergencyActivity extends Activity {
 		ivCountdownFrame.setBackgroundResource(R.drawable.countdown_animation);
 		countdownAnimation = (AnimationDrawable) ivCountdownFrame.getBackground();
 		countdownAnimation.start();
+		
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				if(getHelp)
+					getHelp();
+			}
+			
+		}, TEN_SEC);
 	}
 	
 	protected void getHelp() {
+		ringtone.stop();
 		Intent call = new Intent(Intent.ACTION_CALL);
-		call.setData(Uri.parse(settings.getString(getResources().getString(R.string.emergency_phone_number), "tel:16178164614")));
-		//startActivity(call);
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.emergency, menu);
-		return true;
+		call.setData(Uri.parse(getIntent().getStringExtra("emergency number")));
+		startActivity(call);
+		finish();
 	}
 
 }

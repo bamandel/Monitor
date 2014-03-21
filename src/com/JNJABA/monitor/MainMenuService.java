@@ -1,13 +1,11 @@
 package com.JNJABA.monitor;
 
-import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,142 +15,141 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.os.Process;
 import android.util.Log;
 import android.widget.Toast;
 
-public class MainMenuService extends Service implements LocationListener{
+public class MainMenuService extends Service implements LocationListener {
 	private static final String TAG = "Monitor-Service";
 	private static final int DELAY = 1000;
 	private static final int FAST = 1;
 	private static final int SLOW = 0;
 	private static final int NOTIFICATION_ID = 1;
 	
+	private Looper mServiceLooper;
+	private ServiceHandler mServiceHandler;
+	
 	private Location lastLocation;
 	private LocationManager locationManager;
-	private boolean hasFallen = false;
+	private boolean hasFallen = true;
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
-	private int startId;
+
+	private final int UPDATE_TIME = 900000; // 15 min
+	private final int UPDATE_DISTANCE = 4000000; // Span of the continental US
 	
-	private final int UPDATE_TIME = 900000;       //15 min
-	private final int UPDATE_DISTANCE = 4000000;  //Span of the continental US
+	private final class ServiceHandler extends Handler {
+	      public ServiceHandler(Looper looper) {
+	          super(looper);
+	      }
+	      @Override
+	      public void handleMessage(Message msg) {
+	    	  handleActionMonitor();
+	      }
+	  }
 	
 	public void onCreate() {
-		locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		HandlerThread background = new HandlerThread("ServiceStartsArguments", Process.THREAD_PRIORITY_BACKGROUND);
+		background.start();
+		mServiceLooper = background.getLooper();
+		mServiceHandler = new ServiceHandler(mServiceLooper);
+		
+		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		
 		settings = getApplicationContext().getSharedPreferences(getResources().getString(R.string.monitor_data), MODE_PRIVATE);
 		editor = settings.edit();
 		
-		final Intent notificationIntent = new Intent(getApplicationContext(),
-                MainMenuActivity.class);
-        final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
-                notificationIntent, 0);
-		
-		final Notification notification = new Notification.Builder(getApplicationContext())
-		.setSmallIcon(android.R.drawable.ic_media_play)
-        .setOngoing(true).setContentTitle("Monitoring")
-        .setContentText("Click to access Monitoring app")
-        .setContentIntent(pendingIntent).build();
+		final Intent notificationIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
+		final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+
+		final Notification notification = new Notification.Builder(
+				getApplicationContext())
+				.setSmallIcon(android.R.drawable.ic_media_play)
+				.setOngoing(true).setContentTitle("Monitoring")
+				.setContentText("Click to access Monitoring app")
+				.setContentIntent(pendingIntent).build();
+
+		callGPS();
 		
 		startForeground(NOTIFICATION_ID, notification);
 	}
-	
-	//The intent will contain any data the service needs to use
-	public int onStartCommand(Intent intent, int flags, int startId) {	
-		this.startId = startId;
-		
-		callGPS(SLOW, hasFallen);
-		
-		//Need to redo the handler to deal with new threads
-		final Handler handler = new Handler();
-		
-		Thread background = new Thread(new Runnable() {
 
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				try{
-					log("Thread starting");
-					handleActionMonitor();
-				} catch (Exception e) {
-					log("Exception caught");
-					log(e.getMessage());
-				}
-				
-				handler.postDelayed(this, DELAY);
-			}
-			
-		});
+	// The intent will contain any data the service needs to use
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		Toast.makeText(this, "Service starting", Toast.LENGTH_LONG).show();
 		
-		background.start();
-		if(background.isAlive())
-			log("Background Thread is alive");
-		if(!background.isAlive())
-			log("Background Thread died");
-		if(background.isInterrupted())
-			log("Interupted??");
+		Message msg = mServiceHandler.obtainMessage();
+		msg.arg1 = startId;
+		mServiceHandler.sendMessage(msg);
 		
-		return START_CONTINUATION_MASK;
+		//return START_CONTINUATION_MASK;
+		return START_STICKY;
 	}
-	
-	//Start Monitoring for fall
+
+	// Start Monitoring for fall
 	private void handleActionMonitor() {
-		if(fallDetected()) {
-			callGPS(FAST, hasFallen);
+		if (fallDetected()) {
+			callGPS();
 			sendWarning();
 			hasFallen = false;
 		}
 	}
-	
-	//Get GPS location
-	//Use FAST speed if emergency is detected otherwise go SLOW
-	private void callGPS(int speed, boolean emergency) {		
-		
-		//updates GPS every 15 minutes or when someone moves across the span of the US
-		//not meant to be updated based on area traveled.
-		
-		locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, UPDATE_TIME, UPDATE_DISTANCE, this);
-		lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-		
-		//Stores lastLocation into phone app memory for later access
-		editor.putString(getResources().getString(R.string.user_location_latitude),
+
+	// Get GPS location
+	// Use FAST speed if emergency is detected otherwise go SLOW
+	private void callGPS() {
+
+		// updates GPS every 15 minutes or when someone moves across the span of
+		// the US
+		// not meant to be updated based on area traveled.
+
+		locationManager.requestLocationUpdates(
+				LocationManager.NETWORK_PROVIDER, UPDATE_TIME, UPDATE_DISTANCE,
+				this);
+		lastLocation = locationManager
+				.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+				
+		// Stores lastLocation into phone app memory for later access
+		editor.putString(
+				getResources().getString(R.string.user_location_latitude),
 				String.valueOf(lastLocation.getLatitude()));
-		editor.putString(getResources().getString(R.string.user_location_longitude),
+		editor.putString(
+				getResources().getString(R.string.user_location_longitude),
 				String.valueOf(lastLocation.getLongitude()));
-		
-		log(Double.toString(lastLocation.getLatitude()));
-		log(Double.toString(lastLocation.getLongitude()));
-		
+
 		editor.commit();
 	}
-	
-	//Sends data to Server periodically or on Emergency
+
+	// Sends data to Server periodically or on Emergency
 	private void storeData() {
-		//Will most likely have to start a new thread
+		// Will most likely have to start a new thread
 		return;
 	}
-	
-	//Runs the fall detection algorithm
+
+	// Runs the fall detection algorithm
 	private boolean fallDetected() {
-		
-		//Test for fall
-		if(hasFallen) {
+
+		// Test for fall
+		if (hasFallen) {
 			editor.putBoolean(getResources().getString(R.string.user_fall_status), true);
+			editor.commit();
 			hasFallen = true;
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	//Starts the activity to warn of fall. last GPS location is sent
+
+	// Starts the activity to warn of fall. last GPS location is sent
 	private void sendWarning() {
-		Intent emergency = new Intent(getApplicationContext(), EmergencyActivity.class);
+		Intent emergency = new Intent(getApplicationContext(),
+				EmergencyActivity.class);
 		emergency.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		
+
 		emergency.putExtra("latitude", lastLocation.getLatitude());
 		emergency.putExtra("longitude", lastLocation.getLongitude());
-		
+		emergency.putExtra("emergency number", settings.getString(getResources().getString(R.string.emergency_phone_number), "tel:555"));
+
 		startActivity(emergency);
 	}
 
@@ -161,16 +158,16 @@ public class MainMenuService extends Service implements LocationListener{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	private long age(Location location) {
 		return System.currentTimeMillis() - location.getTime();
 	}
-	
+
 	@Override
 	public void onLocationChanged(Location currentLocation) {
 		// TODO Auto-generated method stub
-		
-		if(lastLocation == null || (age(currentLocation) > age(lastLocation))) {
+
+		if (lastLocation == null || (age(currentLocation) > age(lastLocation))) {
 			lastLocation = currentLocation;
 		}
 	}
@@ -178,21 +175,21 @@ public class MainMenuService extends Service implements LocationListener{
 	@Override
 	public void onProviderDisabled(String provider) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	private void log(String msg) {
 		try {
 			Thread.sleep(500);
@@ -201,4 +198,12 @@ public class MainMenuService extends Service implements LocationListener{
 		}
 		Log.i(TAG, msg);
 	}
+
+	@Override
+	public void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		Toast.makeText(this, "Service ending", Toast.LENGTH_LONG).show();
+	}
+	
 }
