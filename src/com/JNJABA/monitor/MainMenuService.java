@@ -1,5 +1,17 @@
 package com.JNJABA.monitor;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -21,17 +33,15 @@ import android.widget.Toast;
 
 public class MainMenuService extends Service implements LocationListener {
 	private static final String TAG = "Monitor-Service";
-	private static final int DELAY = 1000;
-	private static final int FAST = 1;
-	private static final int SLOW = 0;
 	private static final int NOTIFICATION_ID = 1;
+	private static final String CLOUD_WEBPAGE = "I do no know yet";
 	
 	private Looper mServiceLooper;
 	private ServiceHandler mServiceHandler;
 	
 	private Location lastLocation;
 	private LocationManager locationManager;
-	private boolean hasFallen = true;
+	private boolean hasFallen = false;
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
 
@@ -69,7 +79,7 @@ public class MainMenuService extends Service implements LocationListener {
 				.setContentText("Click to access Monitoring app")
 				.setContentIntent(pendingIntent).build();
 
-		callGPS();
+		callGPS(hasFallen);
 		
 		startForeground(NOTIFICATION_ID, notification);
 	}
@@ -89,7 +99,8 @@ public class MainMenuService extends Service implements LocationListener {
 	// Start Monitoring for fall
 	private void handleActionMonitor() {
 		if (fallDetected()) {
-			callGPS();
+			callGPS(hasFallen);
+			//storeData();
 			sendWarning();
 			hasFallen = false;
 		}
@@ -97,33 +108,45 @@ public class MainMenuService extends Service implements LocationListener {
 
 	// Get GPS location
 	// Use FAST speed if emergency is detected otherwise go SLOW
-	private void callGPS() {
+	private void callGPS(boolean emergency) {
 
 		// updates GPS every 15 minutes or when someone moves across the span of
 		// the US
 		// not meant to be updated based on area traveled.
-
-		locationManager.requestLocationUpdates(
-				LocationManager.NETWORK_PROVIDER, UPDATE_TIME, UPDATE_DISTANCE,
-				this);
-		lastLocation = locationManager
-				.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		
+		if(emergency)
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+		else
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, UPDATE_TIME, UPDATE_DISTANCE,this);
+		
+		lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 				
 		// Stores lastLocation into phone app memory for later access
-		editor.putString(
-				getResources().getString(R.string.user_location_latitude),
-				String.valueOf(lastLocation.getLatitude()));
-		editor.putString(
-				getResources().getString(R.string.user_location_longitude),
-				String.valueOf(lastLocation.getLongitude()));
-
+		editor.putString(getResources().getString(R.string.user_location_latitude), String.valueOf(lastLocation.getLatitude()));
+		editor.putString(getResources().getString(R.string.user_location_longitude),String.valueOf(lastLocation.getLongitude()));
+		
 		editor.commit();
 	}
 
 	// Sends data to Server periodically or on Emergency
 	private void storeData() {
 		// Will most likely have to start a new thread
-		return;
+		
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpPost post = new HttpPost(CLOUD_WEBPAGE);
+		
+		try {
+			List<NameValuePair> values = new ArrayList<NameValuePair>();
+			//Send my data
+			post.setEntity(new UrlEncodedFormEntity(values));
+			
+			HttpResponse response = httpClient.execute(post);
+			
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	// Runs the fall detection algorithm
@@ -159,17 +182,16 @@ public class MainMenuService extends Service implements LocationListener {
 		return null;
 	}
 
-	private long age(Location location) {
-		return System.currentTimeMillis() - location.getTime();
-	}
-
 	@Override
 	public void onLocationChanged(Location currentLocation) {
 		// TODO Auto-generated method stub
 
-		if (lastLocation == null || (age(currentLocation) > age(lastLocation))) {
-			lastLocation = currentLocation;
-		}
+		lastLocation = currentLocation;
+		
+		editor.putString(getResources().getString(R.string.user_location_latitude), String.valueOf(lastLocation.getLatitude()));
+		editor.putString(getResources().getString(R.string.user_location_longitude),String.valueOf(lastLocation.getLongitude()));
+		
+		editor.commit();
 	}
 
 	@Override

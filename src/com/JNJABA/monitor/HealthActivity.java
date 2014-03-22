@@ -1,6 +1,5 @@
 package com.JNJABA.monitor;
 
-import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
@@ -32,14 +31,14 @@ public class HealthActivity extends Activity {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				String latitude = settings.getString(getResources().getString(R.string.user_location_latitude), "0");
-				String longitude = settings.getString(getResources().getString(R.string.user_location_longitude), "0");
+				String latitude = settings.getString(getResources().getString(R.string.user_location_latitude), "Uknown");
+				String longitude = settings.getString(getResources().getString(R.string.user_location_longitude), "Unknown");
 				
-				tvHeartRate.setText(settings.getString(getResources().getString(R.string.user_heart_rate), "0"));
-				tvWalkingSpeed.setText(settings.getString(getResources().getString(R.string.user_walking_speed), "0"));
-				tvFallStatus.setText(settings.getString(getResources().getString(R.string.user_fall_status), "true"));
+				tvHeartRate.setText(settings.getString(getResources().getString(R.string.user_heart_rate), "Unkown"));
+				tvWalkingSpeed.setText(settings.getString(getResources().getString(R.string.user_walking_speed), "Unknown"));
+				tvFallStatus.setText(settings.getString(getResources().getString(R.string.user_fall_status), "Unknown"));
 				tvLocation.setText(latitude + ", " + longitude);
-				tvOverallHealth.setText(settings.getString(getResources().getString(R.string.user_overall_health), "0"));
+				tvOverallHealth.setText(settings.getString(getResources().getString(R.string.user_overall_health), "Unknown"));
 				
 				handler.postDelayed(this, DELAY);
 			}
