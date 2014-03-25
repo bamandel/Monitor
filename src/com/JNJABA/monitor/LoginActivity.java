@@ -16,7 +16,7 @@ import android.widget.Toast;
  * SharedPreferences.Editor editor = settings.edit();
  * 
  * editor.putString("name", "Brian");
- * editor.commit();
+ * editor.apply();
  * 
  * The way to get data from our project(though I don't think you will need to in this activity) is
  * 
@@ -51,7 +51,7 @@ public class LoginActivity extends Activity {
 		editor.putString(getResources().getString(R.string.user_heart_rate), "87");
 		editor.putString(getResources().getString(R.string.user_overall_health), "7");
 		
-		editor.commit();
+		editor.apply();
 		//Mock data values ^
 		
 	}

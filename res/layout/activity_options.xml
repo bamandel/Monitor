@@ -33,11 +33,8 @@
         android:id="@+id/tbNotificationToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvNotification"
-        android:layout_alignBottom="@+id/tvNotification"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="52dp"
-        android:text="@string/on_string" />
+        android:layout_marginRight="52dp" />
 
     <SeekBar
         android:id="@+id/sbSound"
@@ -91,15 +88,15 @@
             android:id="@+id/rMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/M_string" 
+            android:text="@string/M_string"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RadioButton
             android:id="@+id/rLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/L_string" 
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:text="@string/L_string"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </RadioGroup>
 
     <TextView
@@ -112,27 +109,19 @@
         android:text="@string/GPS_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/tvGPSOn"
+    <ToggleButton
+        android:id="@+id/tbGPSToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvGPS"
-        android:layout_alignBottom="@+id/tvGPS"
         android:layout_alignRight="@+id/tbNotificationToggle"
-        android:layout_marginRight="18dp"
-        android:text="@string/on_string"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignTop="@+id/tvGPS" />
 
-    <TextView
-        android:id="@+id/tvGPSOff"
+    <ToggleButton
+        android:id="@+id/tbBlueToothToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvGPSOn"
-        android:layout_alignBottom="@+id/tvGPSOn"
-        android:layout_marginLeft="14dp"
-        android:layout_toRightOf="@+id/tvGPSOn"
-        android:hint="@string/off_string"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignRight="@+id/tbGPSToggle"
+        android:layout_alignTop="@+id/tvBluetooth" />
 
     <TextView
         android:id="@+id/tvBluetooth"
@@ -140,28 +129,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvGPS"
         android:layout_below="@+id/tvGPS"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="23dp"
         android:text="@string/bluetooth_string"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/tvBluetoothOn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvBluetooth"
-        android:layout_alignBottom="@+id/tvBluetooth"
-        android:layout_alignLeft="@+id/tvGPSOn"
-        android:text="@string/on_string"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/tvBluetoothOff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvBluetoothOn"
-        android:layout_alignBottom="@+id/tvBluetoothOn"
-        android:layout_alignLeft="@+id/tvGPSOff"
-        android:hint="@string/off_string"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

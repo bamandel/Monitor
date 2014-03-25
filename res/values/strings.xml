@@ -38,7 +38,10 @@
     
     <string name="gps_status">gps status</string>
     <string name="bluetooth_status">bluetooth status</string>
+    <string name="mute_status">mute status</string>
+    <string name="vibrate_status">vibrate status</string>
     <string name="notification_status">notification status</string>
+    <string name="volume_level">volume level</string>
     <string name="font_size">font size</string>
     
     <!-- Brian and Troy's key strings -->
@@ -50,6 +53,7 @@
     <string name="user_overall_health">overall health</string>
     <string name="user_heart_rate">heartrate</string>
     <string name="location">temp TextView name</string>
+    <string name="in_health_activity">in it</string>
     
     <!-- Strings that are used for Widget names (ie Buttons, TextView, EditTexts, etc) -->
     
@@ -88,8 +92,6 @@
     <string name="L_string">Large</string>
     <string name="M_string">Medium</string>
     <string name="S_string">Small</string>
-    <string name="on_string">On</string>
-    <string name="off_string">Off</string>
     <string name="GPS_string">GPS</string>
     <string name="bluetooth_string">Bluetooth</string>
     
@@ -98,7 +100,16 @@
     <string name="user_first_name_string">First Name:</string>
     <string name="user_last_name_string">Last Name:</string>
     <string name="user_age_string">Age:</string>
+    <string name="user_sex_string">Sex:</string>
     <string name="user_address_string">Address:</string>
+    <string name="user_street_string">Street:</string>
+    <string name="user_optional_string">Optional:</string>
+    <string name="user_height_string">Height:</string>
+    <string name="user_weight_string">Weight:</string>
+    <string name="user_email_string">Email:</string>
+    <string name="user_BMI_string">BMI:</string>
+    <string name="emergency_relation_string">Relation:</string>
+    <string name="emergency_phone_number_string">Phone number:</string>
     <string name="profile_pic_string">Profile Picture</string>
     
     <!-- Emergency Widget Strings -->
@@ -107,5 +118,5 @@
     <string name="help_string">HELP</string>
     <string name="emergency_detected_string">EMERGENCY DETECTED</string>
     <string name="countdown_pic_string">Countdown Pic</string>
-
+    
 </resources>

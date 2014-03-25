@@ -35,6 +35,7 @@ public class MainMenuService extends Service implements LocationListener {
 	private static final String TAG = "Monitor-Service";
 	private static final int NOTIFICATION_ID = 1;
 	private static final String CLOUD_WEBPAGE = "I do no know yet";
+	private static final long DELAY = 5000;
 	
 	private Looper mServiceLooper;
 	private ServiceHandler mServiceHandler;
@@ -46,7 +47,7 @@ public class MainMenuService extends Service implements LocationListener {
 	private SharedPreferences.Editor editor;
 
 	private final int UPDATE_TIME = 900000; // 15 min
-	private final int UPDATE_DISTANCE = 4000000; // Span of the continental US
+	private final int UPDATE_DISTANCE = 15000; // around 9 miles
 	
 	private final class ServiceHandler extends Handler {
 	      public ServiceHandler(Looper looper) {
@@ -54,12 +55,21 @@ public class MainMenuService extends Service implements LocationListener {
 	      }
 	      @Override
 	      public void handleMessage(Message msg) {
-	    	  handleActionMonitor();
+	    	  this.post(new Runnable() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					handleActionMonitor();
+					updatePreferences();
+					
+					ServiceHandler.this.postDelayed(this, DELAY);
+				}
+	    	  });
 	      }
-	  }
+	}
 	
 	public void onCreate() {
-		HandlerThread background = new HandlerThread("ServiceStartsArguments", Process.THREAD_PRIORITY_BACKGROUND);
+		HandlerThread background = new HandlerThread("ServiceStartsThread", Process.THREAD_PRIORITY_BACKGROUND);
 		background.start();
 		mServiceLooper = background.getLooper();
 		mServiceHandler = new ServiceHandler(mServiceLooper);
@@ -86,18 +96,17 @@ public class MainMenuService extends Service implements LocationListener {
 
 	// The intent will contain any data the service needs to use
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		Toast.makeText(this, "Service starting", Toast.LENGTH_LONG).show();
-		
 		Message msg = mServiceHandler.obtainMessage();
 		msg.arg1 = startId;
 		mServiceHandler.sendMessage(msg);
 		
-		//return START_CONTINUATION_MASK;
 		return START_STICKY;
 	}
 
 	// Start Monitoring for fall
 	private void handleActionMonitor() {
+		callGPS(hasFallen);
+		
 		if (fallDetected()) {
 			callGPS(hasFallen);
 			//storeData();
@@ -107,27 +116,36 @@ public class MainMenuService extends Service implements LocationListener {
 	}
 
 	// Get GPS location
-	// Use FAST speed if emergency is detected otherwise go SLOW
 	private void callGPS(boolean emergency) {
 
 		// updates GPS every 15 minutes or when someone moves across the span of
 		// the US
 		// not meant to be updated based on area traveled.
 		
-		if(emergency)
+		if(emergency || settings.getBoolean(getResources().getString(R.string.in_health_activity), false)) {
 			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
-		else
+			lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		}
+		else {
 			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, UPDATE_TIME, UPDATE_DISTANCE,this);
+			lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		}
 		
-		lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-				
-		// Stores lastLocation into phone app memory for later access
+		updatePreferences();
+	}
+	
+	private void updatePreferences() {
 		editor.putString(getResources().getString(R.string.user_location_latitude), String.valueOf(lastLocation.getLatitude()));
 		editor.putString(getResources().getString(R.string.user_location_longitude),String.valueOf(lastLocation.getLongitude()));
+		editor.putString(getResources().getString(R.string.user_fall_status), Boolean.toString(hasFallen));
 		
-		editor.commit();
+		log(settings.getString(getResources().getString(R.string.user_location_latitude), "No Lat Value"));
+		log(settings.getString(getResources().getString(R.string.user_location_longitude), "No Lon Value"));
+		log(settings.getString(getResources().getString(R.string.user_fall_status), "No Fall Value"));
+		
+		editor.apply();
 	}
-
+	
 	// Sends data to Server periodically or on Emergency
 	private void storeData() {
 		// Will most likely have to start a new thread
@@ -154,9 +172,8 @@ public class MainMenuService extends Service implements LocationListener {
 
 		// Test for fall
 		if (hasFallen) {
-			editor.putBoolean(getResources().getString(R.string.user_fall_status), true);
-			editor.commit();
 			hasFallen = true;
+			updatePreferences();
 			return true;
 		}
 
@@ -187,11 +204,7 @@ public class MainMenuService extends Service implements LocationListener {
 		// TODO Auto-generated method stub
 
 		lastLocation = currentLocation;
-		
-		editor.putString(getResources().getString(R.string.user_location_latitude), String.valueOf(lastLocation.getLatitude()));
-		editor.putString(getResources().getString(R.string.user_location_longitude),String.valueOf(lastLocation.getLongitude()));
-		
-		editor.commit();
+		updatePreferences();
 	}
 
 	@Override
@@ -225,7 +238,7 @@ public class MainMenuService extends Service implements LocationListener {
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		Toast.makeText(this, "Service ending", Toast.LENGTH_LONG).show();
+		locationManager.removeUpdates(this);
 	}
 	
 }
