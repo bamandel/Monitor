@@ -29,25 +29,33 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
 import android.util.Log;
-import android.widget.Toast;
 
 public class MainMenuService extends Service implements LocationListener {
 	private static final String TAG = "Monitor-Service";
 	private static final int NOTIFICATION_ID = 1;
 	private static final String CLOUD_WEBPAGE = "I do no know yet";
-	private static final long DELAY = 5000;
+	
+	private static final long SECOND = 1000;
+	private static final long MINUTE = 60 * SECOND;
+	private static final long DELAY = 5 * SECOND;
 	
 	private Looper mServiceLooper;
 	private ServiceHandler mServiceHandler;
 	
 	private Location lastLocation;
 	private LocationManager locationManager;
-	private boolean hasFallen = false;
+	
+	//Booleans used to determine which GPS speed to use
+	private boolean fast = false;
+	private boolean repeat = true;
+	
+	//Storage method to Share data with whole application
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
-
+	
+	//Udpate times for 
 	private final int UPDATE_TIME = 900000; // 15 min
-	private final int UPDATE_DISTANCE = 15000; // around 9 miles
+	private final int UPDATE_DISTANCE = 8046; // 5 miles
 	
 	private final class ServiceHandler extends Handler {
 	      public ServiceHandler(Looper looper) {
@@ -60,6 +68,12 @@ public class MainMenuService extends Service implements LocationListener {
 				public void run() {
 					// TODO Auto-generated method stub
 					handleActionMonitor();
+					
+					if(fast == false)
+						GPSBuffer(settings.getBoolean(getResources().getString(R.string.in_health_activity), false));
+					
+					lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+					
 					updatePreferences();
 					
 					ServiceHandler.this.postDelayed(this, DELAY);
@@ -79,17 +93,16 @@ public class MainMenuService extends Service implements LocationListener {
 		settings = getApplicationContext().getSharedPreferences(getResources().getString(R.string.monitor_data), MODE_PRIVATE);
 		editor = settings.edit();
 		
-		final Intent notificationIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
-		final PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
-		final Notification notification = new Notification.Builder(
+		Intent notificationIntent = new Intent(getApplicationContext(), MainMenuActivity.class);
+		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
+		Notification notification = new Notification.Builder(
 				getApplicationContext())
 				.setSmallIcon(android.R.drawable.ic_media_play)
 				.setOngoing(true).setContentTitle("Monitoring")
 				.setContentText("Click to access Monitoring app")
 				.setContentIntent(pendingIntent).build();
 
-		callGPS(hasFallen);
+		callGPS(fast);
 		
 		startForeground(NOTIFICATION_ID, notification);
 	}
@@ -102,47 +115,53 @@ public class MainMenuService extends Service implements LocationListener {
 		
 		return START_STICKY;
 	}
-
-	// Start Monitoring for fall
-	private void handleActionMonitor() {
-		callGPS(hasFallen);
-		
-		if (fallDetected()) {
-			callGPS(hasFallen);
-			//storeData();
-			sendWarning();
-			hasFallen = false;
+	
+	//Makes sure callGPS is called only when needed
+		private void GPSBuffer(boolean running) {
+			if(running && repeat) {
+				callGPS(fast);
+				repeat = false;
+				return;
+			}
+			if(!running && !repeat) {
+				repeat = true;
+				callGPS(fast);
+			}
 		}
-	}
-
+	
 	// Get GPS location
-	private void callGPS(boolean emergency) {
+	private void callGPS(boolean fastest) {
 
 		// updates GPS every 15 minutes or when someone moves across the span of
 		// the US
 		// not meant to be updated based on area traveled.
 		
-		if(emergency || settings.getBoolean(getResources().getString(R.string.in_health_activity), false)) {
-			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
-			lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-		}
-		else {
-			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, UPDATE_TIME, UPDATE_DISTANCE,this);
-			lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-		}
+		//removes previous updates preparing for new method
+		locationManager.removeUpdates(this);
 		
-		updatePreferences();
+		//fastest GPS updates in case of emergency or real time viewing
+		if(fastest) {
+			log("Running in fastest");
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+		}
+		//Casual monitoring speed
+		else {
+			log("Running in slowest");
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, UPDATE_TIME, UPDATE_DISTANCE,this);
+		}
 	}
 	
+	//Stores all the data acquired by this Service
 	private void updatePreferences() {
 		editor.putString(getResources().getString(R.string.user_location_latitude), String.valueOf(lastLocation.getLatitude()));
 		editor.putString(getResources().getString(R.string.user_location_longitude),String.valueOf(lastLocation.getLongitude()));
-		editor.putString(getResources().getString(R.string.user_fall_status), Boolean.toString(hasFallen));
+		editor.putString(getResources().getString(R.string.user_fall_status), Boolean.toString(fast));
 		
 		log(settings.getString(getResources().getString(R.string.user_location_latitude), "No Lat Value"));
 		log(settings.getString(getResources().getString(R.string.user_location_longitude), "No Lon Value"));
 		log(settings.getString(getResources().getString(R.string.user_fall_status), "No Fall Value"));
 		
+		//Using apply to allowing for separate thread processing
 		editor.apply();
 	}
 	
@@ -166,13 +185,23 @@ public class MainMenuService extends Service implements LocationListener {
 			e.printStackTrace();
 		}
 	}
-
+	
+	// Start Monitoring for fall
+	private void handleActionMonitor() {
+		if (fallDetected()) {
+			GPSBuffer(fast);
+			//storeData();
+			sendWarning();
+			fast = false;
+		}
+	}
+	
 	// Runs the fall detection algorithm
 	private boolean fallDetected() {
 
 		// Test for fall
-		if (hasFallen) {
-			hasFallen = true;
+		if (fast) {
+			fast = true;
 			updatePreferences();
 			return true;
 		}

@@ -8,6 +8,9 @@
 package com.JNJABA.monitor;
 
 public final class R {
+    public static final class array {
+        public static final int ADL_array=0x7f060000;
+    }
     public static final class attr {
     }
     public static final class dimen {
@@ -36,60 +39,60 @@ public final class R {
         public static final int zero=0x7f02000c;
     }
     public static final class id {
-        public static final int action_settings=0x7f080035;
-        public static final int bHELP=0x7f080001;
-        public static final int bLogin=0x7f080011;
-        public static final int bOK=0x7f080000;
-        public static final int cbMute=0x7f08001f;
-        public static final int cbRememberMe=0x7f080014;
-        public static final int cbVibrate=0x7f080020;
-        public static final int emergency_button=0x7f08001a;
-        public static final int etPassword=0x7f080010;
-        public static final int etUsername=0x7f08000f;
-        public static final int health_button=0x7f080017;
-        public static final int ivCountdownFrame=0x7f080003;
-        public static final int ivLoginLogo=0x7f08000e;
-        public static final int ivMainMenuLogo=0x7f080016;
-        public static final int ivProPic=0x7f08002a;
-        public static final int options_button=0x7f080019;
-        public static final int profile_button=0x7f080018;
-        public static final int rLarge=0x7f080025;
-        public static final int rMedium=0x7f080024;
-        public static final int rSmall=0x7f080023;
-        public static final int rgTextSizes=0x7f080022;
-        public static final int sbSound=0x7f08001e;
-        public static final int tbBlueToothToggle=0x7f080028;
-        public static final int tbGPSToggle=0x7f080027;
-        public static final int tbNotificationToggle=0x7f08001d;
-        public static final int tvAddress=0x7f080032;
-        public static final int tvAddressMsg=0x7f08002e;
-        public static final int tvAge=0x7f080031;
-        public static final int tvAgeMsg=0x7f08002d;
-        public static final int tvBluetooth=0x7f080029;
-        public static final int tvDr=0x7f080034;
-        public static final int tvEmergencyDetected=0x7f080002;
-        public static final int tvEmergencyNumber=0x7f080033;
-        public static final int tvFallStatus=0x7f080006;
-        public static final int tvFallStatusData=0x7f08000b;
-        public static final int tvFirstName=0x7f08002f;
-        public static final int tvFirstNameMsg=0x7f08002b;
-        public static final int tvFontSize=0x7f080021;
-        public static final int tvGPS=0x7f080026;
-        public static final int tvHeartRate=0x7f080004;
-        public static final int tvHeartRateData=0x7f080009;
-        public static final int tvLastName=0x7f080030;
-        public static final int tvLastNameMsg=0x7f08002c;
-        public static final int tvLocation=0x7f080007;
-        public static final int tvLocationData=0x7f08000c;
-        public static final int tvNotification=0x7f08001b;
-        public static final int tvOverallHealth=0x7f080008;
-        public static final int tvOverallHealthData=0x7f08000d;
-        public static final int tvRememberMe=0x7f080013;
-        public static final int tvSignUp=0x7f080012;
-        public static final int tvSound=0x7f08001c;
-        public static final int tvTopRight=0x7f080015;
-        public static final int tvWalkingSpeed=0x7f080005;
-        public static final int tvWalkingSpeedData=0x7f08000a;
+        public static final int action_settings=0x7f090035;
+        public static final int bHELP=0x7f090001;
+        public static final int bLogin=0x7f090011;
+        public static final int bOK=0x7f090000;
+        public static final int cbMute=0x7f09001f;
+        public static final int cbRememberMe=0x7f090014;
+        public static final int cbVibrate=0x7f090020;
+        public static final int emergency_button=0x7f09001a;
+        public static final int etPassword=0x7f090010;
+        public static final int etUsername=0x7f09000f;
+        public static final int health_button=0x7f090017;
+        public static final int ivCountdownFrame=0x7f090003;
+        public static final int ivLoginLogo=0x7f09000e;
+        public static final int ivMainMenuLogo=0x7f090016;
+        public static final int ivProPic=0x7f09002a;
+        public static final int options_button=0x7f090019;
+        public static final int profile_button=0x7f090018;
+        public static final int rLarge=0x7f090025;
+        public static final int rMedium=0x7f090024;
+        public static final int rSmall=0x7f090023;
+        public static final int rgTextSizes=0x7f090022;
+        public static final int sbSound=0x7f09001e;
+        public static final int tbBlueToothToggle=0x7f090028;
+        public static final int tbGPSToggle=0x7f090027;
+        public static final int tbNotificationToggle=0x7f09001d;
+        public static final int tvAddress=0x7f090032;
+        public static final int tvAddressMsg=0x7f09002e;
+        public static final int tvAge=0x7f090031;
+        public static final int tvAgeMsg=0x7f09002d;
+        public static final int tvBluetooth=0x7f090029;
+        public static final int tvDr=0x7f090034;
+        public static final int tvEmergencyDetected=0x7f090002;
+        public static final int tvEmergencyNumber=0x7f090033;
+        public static final int tvFallStatus=0x7f090006;
+        public static final int tvFallStatusData=0x7f09000b;
+        public static final int tvFirstName=0x7f09002f;
+        public static final int tvFirstNameMsg=0x7f09002b;
+        public static final int tvFontSize=0x7f090021;
+        public static final int tvGPS=0x7f090026;
+        public static final int tvHeartRate=0x7f090004;
+        public static final int tvHeartRateData=0x7f090009;
+        public static final int tvLastName=0x7f090030;
+        public static final int tvLastNameMsg=0x7f09002c;
+        public static final int tvLocation=0x7f090007;
+        public static final int tvLocationData=0x7f09000c;
+        public static final int tvNotification=0x7f09001b;
+        public static final int tvOverallHealth=0x7f090008;
+        public static final int tvOverallHealthData=0x7f09000d;
+        public static final int tvRememberMe=0x7f090013;
+        public static final int tvSignUp=0x7f090012;
+        public static final int tvSound=0x7f09001c;
+        public static final int tvTopRight=0x7f090015;
+        public static final int tvWalkingSpeed=0x7f090005;
+        public static final int tvWalkingSpeedData=0x7f09000a;
     }
     public static final class layout {
         public static final int activity_emergency=0x7f030000;
@@ -101,13 +104,13 @@ public final class R {
         public static final int activity_splash=0x7f030006;
     }
     public static final class menu {
-        public static final int emergency=0x7f070000;
-        public static final int health=0x7f070001;
-        public static final int login=0x7f070002;
-        public static final int main_menu=0x7f070003;
-        public static final int options=0x7f070004;
-        public static final int profile=0x7f070005;
-        public static final int splash=0x7f070006;
+        public static final int emergency=0x7f080000;
+        public static final int health=0x7f080001;
+        public static final int login=0x7f080002;
+        public static final int main_menu=0x7f080003;
+        public static final int options=0x7f080004;
+        public static final int profile=0x7f080005;
+        public static final int splash=0x7f080006;
     }
     public static final class string {
         public static final int GPS_string=0x7f050038;
@@ -237,10 +240,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f070001;
     }
 }

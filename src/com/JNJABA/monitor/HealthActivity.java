@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 public class HealthActivity extends Activity implements Runnable{
 	private static final String TAG = "Monitor-Health";
-	private static final int DELAY = 5000;
+	
+	private static final int SECOND = 1000;
+	private static final int DELAY = 5 * SECOND;
 	
 	private TextView tvHeartRate, tvWalkingSpeed, tvFallStatus, tvLocation, tvOverallHealth;
 	private final Handler handler = new Handler();
