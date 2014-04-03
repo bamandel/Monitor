@@ -119,6 +119,24 @@
     <string name="emergency_detected_string">EMERGENCY DETECTED</string>
     <string name="countdown_pic_string">Countdown Pic</string>
     
+    <string name="Name">Name</string>
+    <string name="LastName">Last Name</string>
+    <string name="Age">Age</string>
+    <string name="Sex">Sex</string>
+    <string name="Address">Address</string>
+    <string name="Phone">Phone Number</string>
+    <string name="Emer_Phone">Emergency number</string>
+    <string name="Street">Street</string>
+    <string name="City">City, State Zip code</string>
+    <string name="Optional">Optional</string>
+    <string name="Email">Email</string>
+    <string name="BMI">BMI</string>
+    <string name="Activity">Activity Level</string>
+    <string name="Relation">Relation to patient</string>
+    <string name="Relation1">Relation</string>
+    <string name="Emer_Info">Emergency Contact Info</string>
+    
+    
     <string-array name="ADL_array">
         
         <item>Front-lying-FALL</item>

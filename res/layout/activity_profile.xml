@@ -1,124 +1,310 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="100"
-    tools:context=".ProfileActivity" >
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+    
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:gravity="center"
+       android:paddingBottom="@dimen/activity_vertical_margin"
+       android:paddingLeft="@dimen/activity_horizontal_margin"
+       android:paddingRight="@dimen/activity_horizontal_margin"
+       android:paddingTop="@dimen/activity_vertical_margin"
+       tools:context="com.displaydata.MainActivity$PlaceholderFragment" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvFirstNameString"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="150dp"
+        android:text="@string/Name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <ImageView
-            android:id="@+id/ivProPic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/profile_pic_string"
-            android:src="@drawable/profile_pic" />
+    <TextView
+        android:id="@+id/tvFirstName"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvFirstNameString"
+        android:layout_alignBottom="@+id/tvFirstNameString"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:hint="@string/Name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="left" >
+    <TextView
+        android:id="@+id/tvLastNameString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvFirstNameString"
+        android:layout_below="@+id/tvFirstName"
+        android:layout_marginTop="15dp"
+        android:text="@string/LastName"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvFirstNameMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="@string/user_first_name_string"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/tvAgeString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvLastNameString"
+        android:layout_below="@+id/tvLastNameString"
+        android:layout_marginTop="15dp"
+        android:text="@string/Age"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvLastNameMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/tvFirstNameMsg"
-                android:text="@string/user_last_name_string"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/tvSexString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tvAge"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@+id/tvSex"
+        android:text="@string/Sex"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvAgeMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/tvLastNameMsg"
-                android:text="@string/user_age_string"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/tvAddressString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvAgeString"
+        android:layout_below="@+id/tvAgeString"
+        android:layout_marginTop="19dp"
+        android:text="@string/Address"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvAddressMsg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_below="@+id/tvAgeMsg"
-                android:text="@string/user_address_string"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/tvStreet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvAddressString"
+        android:layout_alignRight="@+id/tvLastName"
+        android:layout_below="@+id/tvAddressString"
+        android:ems="10"
+        android:hint="@string/Street"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvFirstName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/tvLastNameMsg"
-                android:layout_alignParentRight="true"
-                android:text="@string/user_first_name" />
+    <TextView
+        android:id="@+id/tvCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvStreet"
+        android:layout_alignRight="@+id/tvStreet"
+        android:layout_below="@+id/tvStreet"
+        android:ems="10"
+        android:hint="@string/City"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvLastName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/tvAgeMsg"
-                android:layout_alignParentRight="true"
-                android:text="@string/user_last_name" />
+    <TextView
+        android:id="@+id/tvOptional"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvCity"
+        android:layout_alignRight="@+id/tvCity"
+        android:layout_below="@+id/tvCity"
+        android:ems="10"
+        android:hint="@string/Optional"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvAge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/tvAddressMsg"
-                android:layout_alignParentRight="true"
-                android:text="@string/user_age" />
+    <TextView
+        android:id="@+id/tvPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvLastName"
+        android:layout_below="@+id/tvOptional"
+        android:ems="10"
+        android:hint="@string/Phone"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/tvAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:text="@string/user_address" />
+    <TextView
+        android:id="@+id/tvSex"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvSexString"
+        android:layout_alignBottom="@+id/tvSexString"
+        android:layout_alignRight="@+id/tvLastName"
+        android:layout_marginRight="19dp"
+        android:ems="10"
+        android:hint="@string/Sex"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        </RelativeLayout>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tvAge"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvAgeString"
+        android:layout_alignBottom="@+id/tvAgeString"
+        android:layout_alignRight="@+id/tvPhoneNumberString"
+        android:ems="10"
+        android:hint="@string/Age"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-	<LinearLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:layout_gravity="center"
-	    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/tvPhoneNumberString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvPhoneNumber"
+        android:layout_alignBottom="@+id/tvPhoneNumber"
+        android:layout_alignLeft="@+id/tvOptional"
+        android:text="@string/Phone"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-		<TextView
-		    android:id="@+id/tvEmergencyNumber"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="Emergency Number:"
-		    android:layout_marginBottom="20dp"
-		    android:textAppearance="?android:attr/textAppearanceMedium"
-		    android:layout_gravity="left" />
-		
-		<TextView
-		    android:id="@+id/tvDr"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="left"
-		    android:layout_marginBottom="20dp"
-		    android:textAppearance="?android:attr/textAppearanceMedium"
-		    android:text="Dr:" />
-	</LinearLayout>
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvEmailString"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvPhoneNumberString"
+        android:layout_below="@+id/tvPhoneNumber"
+        android:layout_marginTop="15dp"
+        android:text="@string/Email"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+     <TextView
+         android:id="@+id/tvActivityLevelString"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/tvPhoneNumberString"
+         android:layout_below="@+id/tvEmailString"
+         android:layout_marginTop="15dp"
+         android:text="@string/Activity"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     <TextView
+         android:id="@+id/tvBMIString"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/tvPhoneNumberString"
+         android:layout_below="@+id/tvActivityLevelString"
+         android:layout_marginTop="15dp"
+         android:text="@string/BMI"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+     <TextView
+         android:id="@+id/tvEmergencyInfoString"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/tvPhoneNumberString"
+         android:layout_below="@+id/tvBMIString"
+         android:layout_marginTop="15dp"
+         android:text="@string/Emer_Info"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+     <TextView
+         android:id="@+id/tvEmrgencyNameString"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/tvPhoneNumberString"
+         android:layout_below="@+id/tvEmergencyInfoString"
+         android:layout_marginTop="15dp"
+         android:text="@string/Name"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+     <TextView
+         android:id="@+id/tvEmergencyNumberString"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/tvPhoneNumberString"
+         android:layout_below="@+id/tvEmrgencyNameString"
+         android:layout_marginTop="15dp"
+         android:text="@string/Phone"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+     <TextView
+         android:id="@+id/tvEmergencyRelationString"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/tvPhoneNumberString"
+         android:layout_below="@+id/tvEmergencyNumberString"
+         android:layout_marginTop="15dp"
+         android:text="@string/Relation"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvEmailString"
+        android:layout_alignBottom="@+id/tvEmailString"
+        android:layout_alignLeft="@+id/tvPhoneNumber"
+        android:ems="10"
+        android:hint="@string/Email"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvActivityLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvActivityLevelString"
+        android:layout_alignBottom="@+id/tvActivityLevelString"
+        android:layout_alignLeft="@+id/tvEmail"
+        android:ems="10"
+        android:hint="@string/Activity"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvBMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvBMIString"
+        android:layout_alignBottom="@+id/tvBMIString"
+        android:layout_toLeftOf="@+id/tvActivityLevel"
+        android:layout_toRightOf="@+id/tvAddressString"
+        android:ems="10"
+        android:hint="@string/BMI"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvEmergencyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvEmrgencyNameString"
+        android:layout_alignBottom="@+id/tvEmrgencyNameString"
+        android:layout_alignLeft="@+id/tvEmergencyNumber"
+        android:ems="10"
+        android:hint="@string/Name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvEmergencyNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvEmergencyNumberString"
+        android:layout_alignBottom="@+id/tvEmergencyNumberString"
+        android:layout_toRightOf="@+id/tvBMI"
+        android:ems="10"
+        android:hint="@string/Phone"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvEmergencyRelation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvSexString"
+        android:layout_alignParentBottom="true"
+        android:ems="10"
+        android:hint="@string/Relation1"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvLastName"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tvLastNameString"
+        android:layout_alignBottom="@+id/tvLastNameString"
+        android:layout_alignLeft="@+id/tvFirstName"
+        android:ems="10"
+        android:hint="@string/LastName"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageView
+        android:id="@+id/ivProPicProfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/tvFirstName"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/profile_pic" />
+
+</RelativeLayout>
+    
+</ScrollView>
