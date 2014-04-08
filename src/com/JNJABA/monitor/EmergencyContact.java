@@ -5,13 +5,9 @@ public class EmergencyContact {
 	private String email;
 	private String firstName, lastName;
 	private String relation;
+	private int relationNumber;
 	
-	public EmergencyContact(String uPhoneNumber, String uEmail, String uFirstName, String uLastName, String uRelation) {
-		phoneNumber = uPhoneNumber;
-		email = uEmail;
-		firstName = uFirstName;
-		lastName = uLastName;
-		relation = uRelation;
+	public EmergencyContact() {
 	}
 	
 	public String toString() {
@@ -28,4 +24,6 @@ public class EmergencyContact {
 	public void setLastName(String lastName) {this.lastName = lastName;}
 	public String getRelation() {return relation;}
 	public void setRelation(String relation) {this.relation = relation;}
+	public int getRelationNumber() {return relationNumber;}
+	public void setRelationNumber(int number) {relationNumber = number;}
 }

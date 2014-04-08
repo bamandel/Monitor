@@ -6,6 +6,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,17 +25,32 @@ public class EmergencyActivity extends Activity {
 	private AnimationDrawable countdownAnimation;
 	private ImageView ivCountdownFrame;
 	
+	private PowerManager.WakeLock wake;
 	private AudioManager audio;
 	private int volume = 0;
 	private Ringtone ringtone;
 	
-	private boolean getHelp = true;
+	//Used to make sure phone doesnt end up calling
+	private boolean hasRun = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+		wake = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "EmergencyActivity");
+		wake.acquire();
+		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN |
+				WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
+				WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+				WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN |
+				WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
+				WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+				WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+		
 		setContentView(R.layout.activity_emergency);
 		
 		audio = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -46,8 +62,6 @@ public class EmergencyActivity extends Activity {
 			ringtone.play();
 		}
 		
-		getHelp = true;
-		
 		Button bOK = (Button) findViewById(R.id.bOK);
 		Button bHELP = (Button) findViewById(R.id.bHELP);
 		ivCountdownFrame = (ImageView) findViewById(R.id.ivCountdownFrame);
@@ -57,7 +71,7 @@ public class EmergencyActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				ringtone.stop();
-				getHelp = false;
+				hasRun = true;
 				finish();
 			}
 		});
@@ -66,6 +80,7 @@ public class EmergencyActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				hasRun = true;
 				getHelp();
 			}
 		});
@@ -80,7 +95,7 @@ public class EmergencyActivity extends Activity {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				if(getHelp)
+				if(!hasRun)
 					getHelp();
 			}
 			
@@ -89,10 +104,20 @@ public class EmergencyActivity extends Activity {
 	
 	protected void getHelp() {
 		ringtone.stop();
+		hasRun = true;
 		Intent call = new Intent(Intent.ACTION_CALL);
 		call.setData(Uri.parse(getIntent().getStringExtra("emergency number")));
 		startActivity(call);
 		finish();
 	}
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		if(wake.isHeld())
+			wake.release();
+	}
+	
 
 }

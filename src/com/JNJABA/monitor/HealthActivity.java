@@ -80,7 +80,7 @@ public class HealthActivity extends Activity implements Runnable{
 			String longitude = settings.getString(getResources().getString(R.string.user_location_longitude), "Unknown").toString();
 			log(longitude.toString());
 			
-			tvHeartRate.setText(settings.getString(getResources().getString(R.string.user_heart_rate), "Unkown").toString());
+			tvHeartRate.setText(settings.getString(getResources().getString(R.string.user_heart_rate), "Unknown").toString());
 			tvWalkingSpeed.setText(settings.getString(getResources().getString(R.string.user_walking_speed), "Unknown").toString());
 			tvFallStatus.setText(settings.getString(getResources().getString(R.string.user_fall_status), "Unknown").toString());
 			tvLocation.setText(latitude + ", " + longitude);
@@ -89,8 +89,7 @@ public class HealthActivity extends Activity implements Runnable{
 			log("Exception thrown");
 			e.printStackTrace();
 		}
-		
-			log("About to recall handler");
-			handler.postDelayed(this, DELAY);
+		log("About to recall handler");
+		handler.postDelayed(this, DELAY);
 	}
 }
