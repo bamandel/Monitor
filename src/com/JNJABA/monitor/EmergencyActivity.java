@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
+import android.os.Process;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -70,9 +71,7 @@ public class EmergencyActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				ringtone.stop();
-				hasRun = true;
-				finish();
+				onBackPressed();
 			}
 		});
 		
@@ -102,11 +101,20 @@ public class EmergencyActivity extends Activity {
 		}, TEN_SEC);
 	}
 	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+		ringtone.stop();
+		hasRun = true;
+		finish();
+	}
+
 	protected void getHelp() {
 		ringtone.stop();
 		hasRun = true;
 		Intent call = new Intent(Intent.ACTION_CALL);
-		call.setData(Uri.parse(getIntent().getStringExtra("emergency number")));
+		call.setData(Uri.parse("tel:" + getIntent().getStringExtra("emergency number")));
 		startActivity(call);
 		finish();
 	}
@@ -118,6 +126,4 @@ public class EmergencyActivity extends Activity {
 		if(wake.isHeld())
 			wake.release();
 	}
-	
-
 }

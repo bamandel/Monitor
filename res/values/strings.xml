@@ -27,12 +27,13 @@
     <string name="user_height">height</string>
     <string name="user_weight">weight</string>
     <string name="user_email">email</string>
-    <string name="user_BMI">bmi</string>
+    <string name="user_bmi">bmi</string>
     <string name="user_address">normal address</string>
     <string name="emergency_first_name">emergency first name</string>
     <string name="emergency_last_name">emergency last name</string>
     <string name="emergency_relation">relation</string>
     <string name="emergency_phone_number">emergency phone number</string>
+    <string name="emergency_email">emergency email</string>
     
     <!-- Yutthana's key strings -->
     
@@ -119,22 +120,22 @@
     <string name="emergency_detected_string">EMERGENCY DETECTED</string>
     <string name="countdown_pic_string">Countdown Pic</string>
     
-    <string name="Name">Name</string>
-    <string name="LastName">Last Name</string>
-    <string name="Age">Age</string>
-    <string name="Sex">Sex</string>
-    <string name="Address">Address</string>
-    <string name="Phone">Phone Number</string>
-    <string name="Emer_Phone">Emergency number</string>
-    <string name="Street">Street</string>
-    <string name="City">City, State Zip code</string>
-    <string name="Optional">Optional</string>
-    <string name="Email">Email</string>
-    <string name="BMI">BMI</string>
-    <string name="Activity">Activity Level</string>
-    <string name="Relation">Relation to patient</string>
-    <string name="Relation1">Relation</string>
-    <string name="Emer_Info">Emergency Contact Info</string>
+    <string name="Name">First Name:</string>
+    <string name="LastName">Last Name:</string>
+    <string name="Age">Age:</string>
+    <string name="Sex">Sex:</string>
+    <string name="Address">Address:</string>
+    <string name="Phone">Phone Number:</string>
+    <string name="Emer_Phone">Emergency number:</string>
+    <string name="Street">Street:</string>
+    <string name="City">City, State Zip code:</string>
+    <string name="Optional">Optional:</string>
+    <string name="Email">Email:</string>
+    <string name="BMI">BMI:</string>
+    <string name="Activity">Activity Level:</string>
+    <string name="Relation">Relation to patient:</string>
+    <string name="Relation1">Relation:</string>
+    <string name="Emer_Info">Emergency Contact Info:</string>
     
     
     <string-array name="ADL_array">

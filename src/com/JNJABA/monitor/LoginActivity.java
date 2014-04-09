@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,8 +49,28 @@ public class LoginActivity extends Activity {
 		
 	}
 	
+	//Add all acquired values here that the profile will need
 	private void updateProfile() {
+		profile.setFirstName("James");
+		profile.setLastName("Whalen");
+		profile.setActivityLevel(3);
+		profile.setAge(21);
+		profile.setBmi(18.5);
+		profile.setEmail("james_whalen@student.uml.edu");
+		profile.setAddress("141 Marginal St, Lowell MA");
+		profile.setSex("Male");
+		profile.setHeight(6);
+		profile.setWeight(190);
 		
+		Log.d("Login Activity", "Contact should be added");
+		
+		profile.addEmergencyContact(new EmergencyContact(profile)
+				.setFirstName("Brian")
+				.setLastName("Mandel")
+				.setPhoneNumber("555")
+				.setRelation("Best Friend"));
+		
+		profile.updatePreferences();
 	}
 	
 	@Override

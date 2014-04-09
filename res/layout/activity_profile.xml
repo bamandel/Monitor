@@ -30,7 +30,6 @@
         android:layout_alignBaseline="@+id/tvFirstNameString"
         android:layout_alignBottom="@+id/tvFirstNameString"
         android:layout_alignParentRight="true"
-        android:ems="10"
         android:hint="@string/Name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -81,7 +80,6 @@
         android:layout_alignLeft="@+id/tvAddressString"
         android:layout_alignRight="@+id/tvLastName"
         android:layout_below="@+id/tvAddressString"
-        android:ems="10"
         android:hint="@string/Street"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -92,7 +90,6 @@
         android:layout_alignLeft="@+id/tvStreet"
         android:layout_alignRight="@+id/tvStreet"
         android:layout_below="@+id/tvStreet"
-        android:ems="10"
         android:hint="@string/City"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -103,7 +100,6 @@
         android:layout_alignLeft="@+id/tvCity"
         android:layout_alignRight="@+id/tvCity"
         android:layout_below="@+id/tvCity"
-        android:ems="10"
         android:hint="@string/Optional"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -113,7 +109,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvLastName"
         android:layout_below="@+id/tvOptional"
-        android:ems="10"
         android:hint="@string/Phone"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -125,7 +120,6 @@
         android:layout_alignBottom="@+id/tvSexString"
         android:layout_alignRight="@+id/tvLastName"
         android:layout_marginRight="19dp"
-        android:ems="10"
         android:hint="@string/Sex"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -136,7 +130,6 @@
         android:layout_alignBaseline="@+id/tvAgeString"
         android:layout_alignBottom="@+id/tvAgeString"
         android:layout_alignRight="@+id/tvPhoneNumberString"
-        android:ems="10"
         android:hint="@string/Age"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -227,7 +220,6 @@
         android:layout_alignBaseline="@+id/tvEmailString"
         android:layout_alignBottom="@+id/tvEmailString"
         android:layout_alignLeft="@+id/tvPhoneNumber"
-        android:ems="10"
         android:hint="@string/Email"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -238,7 +230,6 @@
         android:layout_alignBaseline="@+id/tvActivityLevelString"
         android:layout_alignBottom="@+id/tvActivityLevelString"
         android:layout_alignLeft="@+id/tvEmail"
-        android:ems="10"
         android:hint="@string/Activity"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -250,7 +241,6 @@
         android:layout_alignBottom="@+id/tvBMIString"
         android:layout_toLeftOf="@+id/tvActivityLevel"
         android:layout_toRightOf="@+id/tvAddressString"
-        android:ems="10"
         android:hint="@string/BMI"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -261,7 +251,6 @@
         android:layout_alignBaseline="@+id/tvEmrgencyNameString"
         android:layout_alignBottom="@+id/tvEmrgencyNameString"
         android:layout_alignLeft="@+id/tvEmergencyNumber"
-        android:ems="10"
         android:hint="@string/Name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -272,7 +261,6 @@
         android:layout_alignBaseline="@+id/tvEmergencyNumberString"
         android:layout_alignBottom="@+id/tvEmergencyNumberString"
         android:layout_toRightOf="@+id/tvBMI"
-        android:ems="10"
         android:hint="@string/Phone"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -282,7 +270,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvSexString"
         android:layout_alignParentBottom="true"
-        android:ems="10"
         android:hint="@string/Relation1"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -293,7 +280,6 @@
         android:layout_alignBaseline="@+id/tvLastNameString"
         android:layout_alignBottom="@+id/tvLastNameString"
         android:layout_alignLeft="@+id/tvFirstName"
-        android:ems="10"
         android:hint="@string/LastName"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

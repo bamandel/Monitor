@@ -261,7 +261,10 @@ public class MainMenuService extends Service implements LocationListener, Sensor
 	private void sendWarning() {
 		Intent emergency = new Intent(MainMenuService.this, EmergencyActivity.class);
 		emergency.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		emergency.addFlags(Intent.FLAG_ACTIVITY_NO_USER_ACTION);
 		emergency.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+		emergency.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		emergency.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
 
 		emergency.putExtra("latitude", lastLocation.getLatitude());
 		emergency.putExtra("longitude", lastLocation.getLongitude());

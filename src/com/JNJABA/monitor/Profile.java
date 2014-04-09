@@ -1,13 +1,16 @@
 package com.JNJABA.monitor;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.util.Log;
 
 public class Profile {
 	private String address2;
 	private Bitmap proPic;
-	private EmergencyContact emergencyContact;
+	private static final ArrayList<EmergencyContact> emergencyContact = new ArrayList<EmergencyContact>();
 
 	private SharedPreferences settings;
 	private SharedPreferences.Editor editor;
@@ -24,19 +27,42 @@ public class Profile {
 	public static class Holder {
 		private static final Profile INSTANCE = new Profile(context);
 	}
-
+	
 	public static Profile getInstance() {
 		return Holder.INSTANCE;
 	}
 	
 	public void updatePreferences() {editor.apply();}
+	
+	public SharedPreferences getSettings() {return settings;}
+	public SharedPreferences.Editor getEditor() {return editor;}
+	public Context getContext() {return context;}
 
 	public void addProPic(Bitmap pic) {proPic = pic;}
 	public Bitmap getProPic() {return proPic;}
 	public void addAddress2(String mAddress2) {address2 = mAddress2;}
 	public String getAddress2() {return address2;}
-	public void addEmergencyContact(EmergencyContact contact) {emergencyContact = contact;}
-	public EmergencyContact getEmergencyContact() {return emergencyContact;}
+	
+	public void addEmergencyContact(EmergencyContact contact) {
+		contact.updatePreferences();
+		emergencyContact.add(contact);
+	}
+	
+	public EmergencyContact getEmergencyContact(int i) {
+		
+		if(emergencyContact.isEmpty())
+			Log.d("Profile", "ArrayList is empty");
+		
+		for(EmergencyContact contact : emergencyContact) {
+			Log.d("Profile", String.valueOf(contact.getRelationNumber()));
+			if(contact.getRelationNumber() == i) {
+				Log.d("Profile", "Contact found");
+				return contact;
+			}
+		}
+		Log.d("Profile", "Contact not found, returning null");
+		return null;
+	}
 	
 	public String toString() {
 		return "";
@@ -59,7 +85,7 @@ public class Profile {
 	}
 
 	public int getAge() {
-		return Integer.parseInt(settings.getString(context.getResources().getString(R.string.user_age), "-1"));
+		return Integer.valueOf(settings.getString(context.getResources().getString(R.string.user_age), "-1"));
 	}
 
 	public void setAge(int mAge) {
@@ -75,15 +101,15 @@ public class Profile {
 	}
 
 	public int getWeight() {
-		return Integer.parseInt(settings.getString(context.getResources().getString(R.string.user_weight), "-1"));
+		return Integer.valueOf(settings.getString(context.getResources().getString(R.string.user_weight), "-1"));
 	}
 
 	public void setWeight(int mWeight) {
 		editor.putString(context.getResources().getString(R.string.user_weight), String.valueOf(mWeight));
 	}
 
-	public int getHeight() {
-		return Integer.parseInt(settings.getString(context.getResources().getString(R.string.user_height), "-1"));
+	public double getHeight() {
+		return Double.valueOf(settings.getString(context.getResources().getString(R.string.user_height), "-1"));
 	}
 
 	public void setHeight(int mHeight) {
@@ -107,15 +133,15 @@ public class Profile {
 	}
 
 	public double getBmi() {
-		return Double.parseDouble(settings.getString(context.getResources().getString(R.string.user_BMI), "-1"));
+		return Double.valueOf(settings.getString(context.getResources().getString(R.string.user_bmi), "-1"));
 	}
 
 	public void setBmi(double mBmi) {
-		editor.putString(context.getResources().getString(R.string.user_BMI), String.valueOf(mBmi));
+		editor.putString(context.getResources().getString(R.string.user_bmi), String.valueOf(mBmi));
 	}
 
 	public int getActivityLevel() {
-		return Integer.parseInt(settings.getString(context.getResources().getString(R.string.user_overall_health), "-1"));
+		return Integer.valueOf(settings.getString(context.getResources().getString(R.string.user_overall_health), "-1"));
 	}
 
 	public void setActivityLevel(int mActivityLevel) {
